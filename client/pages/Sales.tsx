@@ -264,7 +264,7 @@ export default function Sales() {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
-  const handleGetQuote = () => {
+  const handleGetStarted = () => {
     if (cart.length === 0) {
       alert("Please add items to your cart first");
       return;
@@ -283,9 +283,10 @@ export default function Sales() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img 
-              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200" 
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800" 
               alt="RVJ&C Oil Ltd" 
-              className="h-8"
+              className="h-8 font-bold"
+              style={{ fontWeight: 'bold' }}
             />
           </motion.div>
           <div className="hidden md:flex space-x-8">
@@ -335,10 +336,10 @@ export default function Sales() {
             
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
-                onClick={handleGetQuote}
+                onClick={handleGetStarted}
                 className="bg-gold text-gold-foreground hover:bg-gold/90"
               >
-                Get Quote
+                Get Started
               </Button>
             </motion.div>
           </div>
@@ -424,10 +425,10 @@ export default function Sales() {
                         <span className="text-xl font-bold text-gold">₦{getTotalPrice().toLocaleString()}</span>
                       </div>
                       <Button
-                        onClick={handleGetQuote}
+                        onClick={handleGetStarted}
                         className="w-full bg-gold text-gold-foreground hover:bg-gold/90"
                       >
-                        Proceed to Quote
+                        Proceed to Checkout
                       </Button>
                     </div>
                   </>
@@ -666,9 +667,10 @@ export default function Sales() {
                 whileHover={{ scale: 1.05 }}
               >
                 <img 
-                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200" 
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800" 
                   alt="RVJ&C Oil Ltd" 
-                  className="h-8"
+                  className="h-8 font-bold"
+                  style={{ fontWeight: 'bold' }}
                 />
               </motion.div>
               <p className="text-muted-foreground mb-6 text-lg">
