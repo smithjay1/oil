@@ -1,14 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Truck, Zap, Shield, Droplets } from "lucide-react";
-import { motion } from "framer-motion";
+import { ShoppingCart, Truck, Zap, Shield, Droplets, Plus, Minus, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LiquidChrome from "@/components/LiquidChrome";
 
+interface CartItem {
+  id: number;
+  name: string;
+  type: string;
+  price: number;
+  unit: string;
+  image: string;
+  quantity: number;
+}
+
 export default function Sales() {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [showCart, setShowCart] = useState(false);
   const navigate = useNavigate();
 
   const containerVariants = {
@@ -36,22 +48,22 @@ export default function Sales() {
   };
 
   const categories = [
-    { id: "all", name: "All Products", count: 10 },
-    { id: "crude", name: "Crude Oil", count: 3 },
+    { id: "all", name: "All Products", count: 12 },
+    { id: "crude", name: "Crude Oil", count: 4 },
     { id: "refined", name: "Refined Products", count: 4 },
-    { id: "specialty", name: "Specialty Oils", count: 3 }
+    { id: "specialty", name: "Specialty Oils", count: 4 }
   ];
 
   const oilProducts = [
     {
       id: 1,
       category: "crude",
-      name: "West Texas Intermediate (WTI)",
-      type: "Light Sweet Crude Oil",
+      name: "Offshore Platform Crude Oil",
+      type: "Deep Water Extraction",
       price: 78.50,
       unit: "per barrel",
       image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&h=600&fit=crop&auto=format",
-      description: "Premium light sweet crude oil with low sulfur content. Ideal for gasoline and diesel production.",
+      description: "Premium crude oil extracted from offshore platforms with advanced deep water drilling technology.",
       specifications: ["API Gravity: 39.6°", "Sulfur Content: 0.24%", "Pour Point: -35°C"],
       inStock: true,
       featured: true
@@ -59,12 +71,12 @@ export default function Sales() {
     {
       id: 2,
       category: "crude",
-      name: "Brent Crude Oil",
-      type: "North Sea Blend",
+      name: "Deep Water Drilling Crude",
+      type: "Gulf of Mexico Blend",
       price: 82.30,
       unit: "per barrel",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format",
-      description: "High-quality crude oil blend from the North Sea. Benchmark for global oil pricing.",
+      description: "High-quality crude oil from deep water drilling operations in the Gulf of Mexico.",
       specifications: ["API Gravity: 38.3°", "Sulfur Content: 0.37%", "Pour Point: -30°C"],
       inStock: true,
       featured: false
@@ -72,104 +84,130 @@ export default function Sales() {
     {
       id: 3,
       category: "crude",
-      name: "Dubai Crude Oil",
-      type: "Medium Sour Crude",
+      name: "Brazilian FPSO Crude",
+      type: "Floating Production Unit Oil",
       price: 76.80,
       unit: "per barrel",
       image: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=800&h=600&fit=crop&auto=format",
-      description: "Medium gravity crude oil from the Middle East. Excellent for refinery operations.",
+      description: "Premium crude oil from Brazilian coast FPSO vessels with 200,000 barrels daily capacity.",
       specifications: ["API Gravity: 31.0°", "Sulfur Content: 2.04%", "Pour Point: -6°C"],
       inStock: true,
       featured: false
     },
     {
       id: 4,
-      category: "refined",
-      name: "Premium Gasoline 95 RON",
-      type: "Motor Fuel",
-      price: 0.95,
-      unit: "per liter",
-      image: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=800&h=600&fit=crop&auto=format",
-      description: "High-octane unleaded gasoline for automotive applications. Meets all international standards.",
-      specifications: ["Octane Rating: 95 RON", "Ethanol Content: 10%", "Density: 0.75 g/ml"],
+      category: "crude",
+      name: "North Sea Wind Platform Oil",
+      type: "Hybrid Energy Platform Crude",
+      price: 84.20,
+      unit: "per barrel",
+      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop&auto=format",
+      description: "Environmentally conscious crude oil from hybrid renewable energy and oil extraction platforms.",
+      specifications: ["API Gravity: 40.2°", "Sulfur Content: 0.18%", "Pour Point: -38°C"],
       inStock: true,
       featured: true
     },
     {
       id: 5,
       category: "refined",
-      name: "Ultra Low Sulfur Diesel",
-      type: "Automotive Diesel",
-      price: 0.88,
+      name: "Houston Refinery Gasoline",
+      type: "Premium Motor Fuel",
+      price: 0.95,
       unit: "per liter",
-      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop&auto=format",
-      description: "Clean-burning diesel fuel with ultra-low sulfur content for modern diesel engines.",
-      specifications: ["Sulfur Content: <10 ppm", "Cetane Number: 51", "Density: 0.84 g/ml"],
+      image: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=800&h=600&fit=crop&auto=format",
+      description: "High-octane gasoline from world-class Houston refinery processing 500,000 barrels per day.",
+      specifications: ["Octane Rating: 95 RON", "Ethanol Content: 10%", "Density: 0.75 g/ml"],
       inStock: true,
-      featured: false
+      featured: true
     },
     {
       id: 6,
       category: "refined",
-      name: "Jet Fuel A-1",
-      type: "Aviation Fuel",
-      price: 1.12,
+      name: "Rotterdam Catalytic Diesel",
+      type: "Ultra Low Sulfur Diesel",
+      price: 0.88,
       unit: "per liter",
-      image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&h=600&fit=crop&auto=format",
-      description: "High-grade kerosene-based jet fuel for commercial and military aviation.",
-      specifications: ["Flash Point: 38°C min", "Freeze Point: -47°C", "Density: 0.80 g/ml"],
+      image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop&auto=format",
+      description: "Clean-burning diesel fuel from advanced catalytic cracking technology in Rotterdam.",
+      specifications: ["Sulfur Content: <10 ppm", "Cetane Number: 51", "Density: 0.84 g/ml"],
       inStock: true,
       featured: false
     },
     {
       id: 7,
       category: "refined",
-      name: "Marine Gas Oil",
-      type: "Marine Fuel",
-      price: 0.72,
+      name: "Saudi Petrochemical Fuel",
+      type: "Polymer Grade Feedstock",
+      price: 1.12,
       unit: "per liter",
-      image: "https://images.unsplash.com/photo-1469022563428-aa04fef9f5a2?w=800&h=600&fit=crop&auto=format",
-      description: "Low-sulfur marine fuel compliant with IMO 2020 regulations for shipping industry.",
-      specifications: ["Sulfur Content: 0.50%", "Viscosity: 11 cSt", "Flash Point: 60°C min"],
+      image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&h=600&fit=crop&auto=format",
+      description: "High-grade petrochemical fuel from integrated Saudi Arabian facilities producing polymer feedstocks.",
+      specifications: ["Flash Point: 38°C min", "Freeze Point: -47°C", "Density: 0.80 g/ml"],
       inStock: true,
       featured: false
     },
     {
       id: 8,
+      category: "refined",
+      name: "Singapore Distillation Oil",
+      type: "High-Efficiency Distilled",
+      price: 0.72,
+      unit: "per liter",
+      image: "https://images.unsplash.com/photo-1469022563428-aa04fef9f5a2?w=800&h=600&fit=crop&auto=format",
+      description: "Premium distilled oil from Singapore's high-efficiency distillation columns for crude oil separation.",
+      specifications: ["Sulfur Content: 0.50%", "Viscosity: 11 cSt", "Flash Point: 60°C min"],
+      inStock: true,
+      featured: false
+    },
+    {
+      id: 9,
       category: "specialty",
-      name: "Hydraulic Oil ISO 46",
-      type: "Industrial Lubricant",
+      name: "Control Room Grade Oil",
+      type: "Industrial Hydraulic Fluid",
       price: 3.50,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1590508669091-43e7b5bc37b6?w=800&h=600&fit=crop&auto=format",
-      description: "Premium hydraulic fluid for industrial machinery and mobile equipment.",
+      description: "Premium hydraulic fluid designed for 24/7 automated control systems and industrial machinery.",
       specifications: ["Viscosity: 46 cSt at 40°C", "Viscosity Index: 95", "Pour Point: -30°C"],
       inStock: true,
       featured: true
     },
     {
-      id: 9,
+      id: 10,
       category: "specialty",
-      name: "Transformer Oil",
-      type: "Electrical Insulating Oil",
+      name: "Pipeline Maintenance Oil",
+      type: "High-Performance Lubricant",
       price: 2.80,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&h=600&fit=crop&auto=format",
-      description: "High-purity mineral oil for electrical transformers and switchgear insulation.",
+      description: "Specialized lubricant for trans-continental pipeline systems and maintenance operations.",
       specifications: ["Dielectric Strength: 70 kV", "Acid Value: <0.01 mg KOH/g", "Moisture: <10 ppm"],
       inStock: false,
       featured: false
     },
     {
-      id: 10,
+      id: 11,
       category: "specialty",
-      name: "White Mineral Oil USP",
-      type: "Food/Pharmaceutical Grade",
+      name: "Subsea Installation Oil",
+      type: "Marine Grade Lubricant",
       price: 5.20,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1569163166731-de28039c3a85?w=800&h=600&fit=crop&auto=format",
-      description: "USP/FDA approved white mineral oil for food processing and pharmaceutical applications.",
+      description: "High-purity marine grade oil for subsea pipeline and underwater equipment installations.",
       specifications: ["Purity: 99.9%", "Color: Water White", "Saybolt Color: +30"],
+      inStock: true,
+      featured: false
+    },
+    {
+      id: 12,
+      category: "specialty",
+      name: "Jack-up Rig Hydraulic Oil",
+      type: "Mobile Offshore Platform Fluid",
+      price: 4.75,
+      unit: "per liter",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&auto=format",
+      description: "Specialized hydraulic fluid for jack-up drilling rigs and mobile offshore drilling units.",
+      specifications: ["Viscosity: 68 cSt at 40°C", "Thermal Stability: 200°C", "Anti-wear: Excellent"],
       inStock: true,
       featured: false
     }
@@ -179,8 +217,59 @@ export default function Sales() {
     ? oilProducts 
     : oilProducts.filter(product => product.category === selectedCategory);
 
-  const handleGetQuote = (product: typeof oilProducts[0]) => {
-    navigate('/payment', { state: { selectedProduct: product } });
+  const addToCart = (product: typeof oilProducts[0]) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevCart, {
+          id: product.id,
+          name: product.name,
+          type: product.type,
+          price: product.price,
+          unit: product.unit,
+          image: product.image,
+          quantity: 1
+        }];
+      }
+    });
+  };
+
+  const removeFromCart = (productId: number) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== productId));
+  };
+
+  const updateQuantity = (productId: number, newQuantity: number) => {
+    if (newQuantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+    setCart(prevCart =>
+      prevCart.map(item =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
+  const getTotalItems = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
+  const handleGetQuote = () => {
+    if (cart.length === 0) {
+      alert("Please add items to your cart first");
+      return;
+    }
+    navigate('/payment', { state: { cartItems: cart } });
   };
 
   return (
@@ -221,13 +310,129 @@ export default function Sales() {
               </motion.a>
             ))}
           </div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-gold text-gold-foreground hover:bg-gold/90">
-              Get Quote
-            </Button>
-          </motion.div>
+          <div className="flex items-center gap-4">
+            {/* Cart Button */}
+            <motion.button
+              onClick={() => setShowCart(!showCart)}
+              className="relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button variant="outline" className="border-gold text-gold hover:bg-gold hover:text-gold-foreground">
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Cart
+                {getTotalItems() > 0 && (
+                  <Badge className="ml-2 bg-gold text-gold-foreground">
+                    {getTotalItems()}
+                  </Badge>
+                )}
+              </Button>
+            </motion.button>
+            
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button 
+                onClick={handleGetQuote}
+                className="bg-gold text-gold-foreground hover:bg-gold/90"
+              >
+                Get Quote
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </nav>
+
+      {/* Cart Sidebar */}
+      <AnimatePresence>
+        {showCart && (
+          <motion.div
+            className="fixed inset-0 z-50 flex"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div 
+              className="flex-1 bg-black/50"
+              onClick={() => setShowCart(false)}
+            />
+            <motion.div
+              className="w-96 bg-dark-card border-l border-dark-border h-full overflow-y-auto"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-gold">Shopping Cart</h2>
+                  <button
+                    onClick={() => setShowCart(false)}
+                    className="text-muted-foreground hover:text-gold"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {cart.length === 0 ? (
+                  <p className="text-muted-foreground text-center py-8">Your cart is empty</p>
+                ) : (
+                  <>
+                    <div className="space-y-4 mb-6">
+                      {cart.map((item) => (
+                        <div key={item.id} className="flex gap-4 p-4 bg-dark-bg rounded-lg">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-16 h-16 rounded object-cover"
+                          />
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-gold text-sm">{item.name}</h4>
+                            <p className="text-xs text-muted-foreground">{item.type}</p>
+                            <p className="text-sm font-bold">${item.price} {item.unit}</p>
+                            <div className="flex items-center gap-2 mt-2">
+                              <button
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                className="w-6 h-6 rounded bg-gold/20 text-gold hover:bg-gold hover:text-gold-foreground"
+                              >
+                                <Minus className="w-3 h-3 mx-auto" />
+                              </button>
+                              <span className="w-8 text-center">{item.quantity}</span>
+                              <button
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                className="w-6 h-6 rounded bg-gold/20 text-gold hover:bg-gold hover:text-gold-foreground"
+                              >
+                                <Plus className="w-3 h-3 mx-auto" />
+                              </button>
+                              <button
+                                onClick={() => removeFromCart(item.id)}
+                                className="ml-auto text-red-500 hover:text-red-400"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="border-t border-dark-border pt-4">
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-lg font-semibold">Total:</span>
+                        <span className="text-xl font-bold text-gold">${getTotalPrice().toFixed(2)}</span>
+                      </div>
+                      <Button
+                        onClick={handleGetQuote}
+                        className="w-full bg-gold text-gold-foreground hover:bg-gold/90"
+                      >
+                        Proceed to Quote
+                      </Button>
+                    </div>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Sales Hero Section */}
       <section className="pt-24 pb-20 bg-dark-card relative overflow-hidden">
@@ -366,11 +571,11 @@ export default function Sales() {
                     <div className="flex gap-2 mt-auto">
                       <Button 
                         className="flex-1 bg-gold text-gold-foreground hover:bg-gold/90" 
-                        onClick={() => handleGetQuote(product)}
+                        onClick={() => addToCart(product)}
                         disabled={!product.inStock}
                       >
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        {product.inStock ? 'Get Quote' : 'Out of Stock'}
+                        <Plus className="w-4 h-4 mr-2" />
+                        {product.inStock ? 'Add to Cart' : 'Out of Stock'}
                       </Button>
                     </div>
                   </CardContent>
