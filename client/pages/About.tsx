@@ -98,7 +98,7 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-6xl font-bold mb-6">About <span className="text-gold">AETHER HUB & OIL</span></h1>
+            <h1 className="text-6xl font-bold mb-6">About <span className="text-gold">RVJ&C Oil Ltd</span></h1>
             <p className="text-muted-foreground max-w-3xl mx-auto text-xl">
               A global leader in petroleum extraction, refining, and distribution, committed to powering the world's energy needs
             </p>
