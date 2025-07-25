@@ -47,7 +47,7 @@ export default function About() {
               { name: "Home", href: "/" },
               { name: "Services", href: "/#services" },
               { name: "About", href: "/about" },
-              { name: "Gallery", href: "/#gallery" },
+              { name: "Sales", href: "/sales" },
               { name: "Contact", href: "/#contact" }
             ].map((item, index) => (
               <motion.a
