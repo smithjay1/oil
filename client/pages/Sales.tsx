@@ -60,7 +60,7 @@ export default function Sales() {
       category: "crude",
       name: "Offshore Platform Crude Oil",
       type: "Deep Water Extraction",
-      price: 78.50,
+      price: 32500,
       unit: "per barrel",
       image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&h=600&fit=crop&auto=format",
       description: "Premium crude oil extracted from offshore platforms with advanced deep water drilling technology.",
@@ -72,11 +72,11 @@ export default function Sales() {
       id: 2,
       category: "crude",
       name: "Deep Water Drilling Crude",
-      type: "Gulf of Mexico Blend",
-      price: 82.30,
+      type: "Gulf of Guinea Blend",
+      price: 34100,
       unit: "per barrel",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format",
-      description: "High-quality crude oil from deep water drilling operations in the Gulf of Mexico.",
+      description: "High-quality crude oil from deep water drilling operations in the Gulf of Guinea, Nigeria.",
       specifications: ["API Gravity: 38.3°", "Sulfur Content: 0.37%", "Pour Point: -30°C"],
       inStock: true,
       featured: false
@@ -84,12 +84,12 @@ export default function Sales() {
     {
       id: 3,
       category: "crude",
-      name: "Brazilian FPSO Crude",
+      name: "Nigerian FPSO Crude",
       type: "Floating Production Unit Oil",
-      price: 76.80,
+      price: 31800,
       unit: "per barrel",
       image: "https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?w=800&h=600&fit=crop&auto=format",
-      description: "Premium crude oil from Brazilian coast FPSO vessels with 200,000 barrels daily capacity.",
+      description: "Premium crude oil from Nigerian coast FPSO vessels with 200,000 barrels daily capacity.",
       specifications: ["API Gravity: 31.0°", "Sulfur Content: 2.04%", "Pour Point: -6°C"],
       inStock: true,
       featured: false
@@ -97,12 +97,12 @@ export default function Sales() {
     {
       id: 4,
       category: "crude",
-      name: "North Sea Wind Platform Oil",
-      type: "Hybrid Energy Platform Crude",
-      price: 84.20,
+      name: "Nigerian Light Sweet Crude",
+      type: "Premium Export Grade",
+      price: 34850,
       unit: "per barrel",
       image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop&auto=format",
-      description: "Environmentally conscious crude oil from hybrid renewable energy and oil extraction platforms.",
+      description: "High-quality Nigerian light sweet crude oil, premium grade for international export markets.",
       specifications: ["API Gravity: 40.2°", "Sulfur Content: 0.18%", "Pour Point: -38°C"],
       inStock: true,
       featured: true
@@ -110,12 +110,12 @@ export default function Sales() {
     {
       id: 5,
       category: "refined",
-      name: "Houston Refinery Gasoline",
-      type: "Premium Motor Fuel",
-      price: 0.95,
+      name: "Premium Motor Spirit (PMS)",
+      type: "Premium Petrol",
+      price: 395,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1562690868-60bbe7293e94?w=800&h=600&fit=crop&auto=format",
-      description: "High-octane gasoline from world-class Houston refinery processing 500,000 barrels per day.",
+      description: "High-octane premium motor spirit for automotive applications, meeting Nigerian fuel standards.",
       specifications: ["Octane Rating: 95 RON", "Ethanol Content: 10%", "Density: 0.75 g/ml"],
       inStock: true,
       featured: true
@@ -123,12 +123,12 @@ export default function Sales() {
     {
       id: 6,
       category: "refined",
-      name: "Rotterdam Catalytic Diesel",
-      type: "Ultra Low Sulfur Diesel",
-      price: 0.88,
+      name: "Automotive Gas Oil (AGO)",
+      type: "Diesel Fuel",
+      price: 365,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&h=600&fit=crop&auto=format",
-      description: "Clean-burning diesel fuel from advanced catalytic cracking technology in Rotterdam.",
+      description: "Clean-burning diesel fuel with low sulfur content for modern diesel engines and generators.",
       specifications: ["Sulfur Content: <10 ppm", "Cetane Number: 51", "Density: 0.84 g/ml"],
       inStock: true,
       featured: false
@@ -136,12 +136,12 @@ export default function Sales() {
     {
       id: 7,
       category: "refined",
-      name: "Saudi Petrochemical Fuel",
-      type: "Polymer Grade Feedstock",
-      price: 1.12,
+      name: "Aviation Turbine Kerosene",
+      type: "Jet A-1 Fuel",
+      price: 465,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&h=600&fit=crop&auto=format",
-      description: "High-grade petrochemical fuel from integrated Saudi Arabian facilities producing polymer feedstocks.",
+      description: "High-grade kerosene-based jet fuel for commercial and private aviation in Nigeria.",
       specifications: ["Flash Point: 38°C min", "Freeze Point: -47°C", "Density: 0.80 g/ml"],
       inStock: true,
       featured: false
@@ -149,12 +149,12 @@ export default function Sales() {
     {
       id: 8,
       category: "refined",
-      name: "Singapore Distillation Oil",
-      type: "High-Efficiency Distilled",
-      price: 0.72,
+      name: "Dual Purpose Kerosene (DPK)",
+      type: "Household & Industrial",
+      price: 298,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1469022563428-aa04fef9f5a2?w=800&h=600&fit=crop&auto=format",
-      description: "Premium distilled oil from Singapore's high-efficiency distillation columns for crude oil separation.",
+      description: "Multi-purpose kerosene for household cooking, lighting, and industrial applications.",
       specifications: ["Sulfur Content: 0.50%", "Viscosity: 11 cSt", "Flash Point: 60°C min"],
       inStock: true,
       featured: false
@@ -162,12 +162,12 @@ export default function Sales() {
     {
       id: 9,
       category: "specialty",
-      name: "Control Room Grade Oil",
-      type: "Industrial Hydraulic Fluid",
-      price: 3.50,
+      name: "Industrial Hydraulic Oil",
+      type: "Heavy-Duty Lubricant",
+      price: 1450,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1590508669091-43e7b5bc37b6?w=800&h=600&fit=crop&auto=format",
-      description: "Premium hydraulic fluid designed for 24/7 automated control systems and industrial machinery.",
+      description: "Premium hydraulic fluid designed for industrial machinery and heavy equipment operations.",
       specifications: ["Viscosity: 46 cSt at 40°C", "Viscosity Index: 95", "Pour Point: -30°C"],
       inStock: true,
       featured: true
@@ -175,12 +175,12 @@ export default function Sales() {
     {
       id: 10,
       category: "specialty",
-      name: "Pipeline Maintenance Oil",
-      type: "High-Performance Lubricant",
-      price: 2.80,
+      name: "Pipeline Grade Lubricant",
+      type: "Specialized Pipeline Oil",
+      price: 1160,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&h=600&fit=crop&auto=format",
-      description: "Specialized lubricant for trans-continental pipeline systems and maintenance operations.",
+      description: "Specialized lubricant for Nigerian pipeline systems and maintenance operations.",
       specifications: ["Dielectric Strength: 70 kV", "Acid Value: <0.01 mg KOH/g", "Moisture: <10 ppm"],
       inStock: false,
       featured: false
@@ -188,12 +188,12 @@ export default function Sales() {
     {
       id: 11,
       category: "specialty",
-      name: "Subsea Installation Oil",
-      type: "Marine Grade Lubricant",
-      price: 5.20,
+      name: "Marine Diesel Oil",
+      type: "Marine Grade Fuel",
+      price: 2155,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1569163166731-de28039c3a85?w=800&h=600&fit=crop&auto=format",
-      description: "High-purity marine grade oil for subsea pipeline and underwater equipment installations.",
+      description: "High-purity marine grade oil for coastal and offshore vessel operations in Nigerian waters.",
       specifications: ["Purity: 99.9%", "Color: Water White", "Saybolt Color: +30"],
       inStock: true,
       featured: false
@@ -201,12 +201,12 @@ export default function Sales() {
     {
       id: 12,
       category: "specialty",
-      name: "Jack-up Rig Hydraulic Oil",
-      type: "Mobile Offshore Platform Fluid",
-      price: 4.75,
+      name: "Offshore Platform Hydraulic Fluid",
+      type: "Marine Platform Lubricant",
+      price: 1970,
       unit: "per liter",
       image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&auto=format",
-      description: "Specialized hydraulic fluid for jack-up drilling rigs and mobile offshore drilling units.",
+      description: "Specialized hydraulic fluid for offshore drilling rigs and marine platform operations.",
       specifications: ["Viscosity: 68 cSt at 40°C", "Thermal Stability: 200°C", "Anti-wear: Excellent"],
       inStock: true,
       featured: false
@@ -282,7 +282,11 @@ export default function Sales() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            AETHER HUB & OIL
+            <img 
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200" 
+              alt="RVJ&C Oil Ltd" 
+              className="h-8"
+            />
           </motion.div>
           <div className="hidden md:flex space-x-8">
             {[
@@ -387,7 +391,7 @@ export default function Sales() {
                           <div className="flex-1">
                             <h4 className="font-semibold text-gold text-sm">{item.name}</h4>
                             <p className="text-xs text-muted-foreground">{item.type}</p>
-                            <p className="text-sm font-bold">${item.price} {item.unit}</p>
+                            <p className="text-sm font-bold">₦{item.price.toLocaleString()} {item.unit}</p>
                             <div className="flex items-center gap-2 mt-2">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
@@ -417,7 +421,7 @@ export default function Sales() {
                     <div className="border-t border-dark-border pt-4">
                       <div className="flex justify-between items-center mb-4">
                         <span className="text-lg font-semibold">Total:</span>
-                        <span className="text-xl font-bold text-gold">${getTotalPrice().toFixed(2)}</span>
+                        <span className="text-xl font-bold text-gold">₦{getTotalPrice().toLocaleString()}</span>
                       </div>
                       <Button
                         onClick={handleGetQuote}
@@ -457,7 +461,7 @@ export default function Sales() {
           >
             <h1 className="text-6xl font-bold mb-6">Premium <span className="text-gold">Oil Products</span></h1>
             <p className="text-muted-foreground max-w-3xl mx-auto text-xl">
-              Discover our comprehensive range of high-quality oil products, from crude oil to specialized lubricants, all competitively priced for your business needs
+              Discover our comprehensive range of high-quality oil products, from crude oil to specialized lubricants, all competitively priced for your business needs across Nigeria
             </p>
           </motion.div>
 
@@ -537,7 +541,7 @@ export default function Sales() {
                     {/* Price Badge */}
                     <div className="absolute top-4 right-4">
                       <Badge className="bg-dark-bg/90 text-gold text-lg font-bold px-3 py-2">
-                        ${product.price} {product.unit}
+                        ₦{product.price.toLocaleString()} {product.unit}
                       </Badge>
                     </div>
                   </div>
@@ -598,7 +602,7 @@ export default function Sales() {
           >
             <h2 className="text-4xl font-bold mb-6">Why Choose <span className="text-gold">Our Products</span></h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              We provide premium quality oil products with competitive pricing and reliable delivery
+              We provide premium quality oil products with competitive pricing and reliable delivery across Nigeria
             </p>
           </motion.div>
 
@@ -613,17 +617,17 @@ export default function Sales() {
               {
                 icon: Shield,
                 title: "Quality Assurance",
-                description: "All products meet international standards with certified quality control"
+                description: "All products meet Nigerian and international standards with certified quality control"
               },
               {
                 icon: Truck,
-                title: "Reliable Delivery",
-                description: "Fast and secure delivery to your location with tracking capabilities"
+                title: "Nationwide Delivery",
+                description: "Fast and secure delivery across all Nigerian states with tracking capabilities"
               },
               {
                 icon: Zap,
                 title: "Competitive Pricing",
-                description: "Best market prices with flexible payment terms and bulk discounts"
+                description: "Best market prices in Naira with flexible payment terms and bulk discounts"
               }
             ].map((feature, index) => (
               <motion.div
@@ -661,10 +665,14 @@ export default function Sales() {
                 className="text-3xl font-bold text-gold mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                AETHER HUB & OIL
+                <img 
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200" 
+                  alt="RVJ&C Oil Ltd" 
+                  className="h-8"
+                />
               </motion.div>
               <p className="text-muted-foreground mb-6 text-lg">
-                Leading the future of energy with innovation, reliability, and sustainability.
+                Nigeria's premier oil company delivering quality petroleum products with reliability and excellence across the nation.
               </p>
             </motion.div>
             
@@ -700,7 +708,7 @@ export default function Sales() {
             viewport={{ once: true }}
           >
             <p className="text-muted-foreground text-lg">
-              &copy; 2024 AETHER HUB & OIL. All rights reserved.
+              &copy; 2024 RVJ&C Oil Ltd. All rights reserved.
             </p>
           </motion.div>
         </div>
