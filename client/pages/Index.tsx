@@ -168,7 +168,7 @@ export default function Index() {
                 animate={{ x: ["-100%", "100%"] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
               />
-              Get Quote
+              Get Started
             </Button>
           </motion.div>
         </div>
