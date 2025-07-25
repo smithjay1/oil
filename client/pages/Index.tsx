@@ -1033,7 +1033,7 @@ export default function Index() {
             viewport={{ once: true }}
           >
             <p className="text-muted-foreground text-lg">
-              &copy; 2024 AETHER HUB & OIL. All rights reserved.
+              &copy; 2024 RVJ&C Oil Ltd. All rights reserved.
             </p>
           </motion.div>
         </div>
