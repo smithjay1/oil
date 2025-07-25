@@ -889,9 +889,9 @@ export default function Index() {
               <h3 className="text-3xl font-semibold mb-8">Contact Information</h3>
               <div className="space-y-6">
                 {[
-                  { icon: MapPin, text: "1234 Energy Boulevard, Houston, TX 77002" },
-                  { icon: Phone, text: "+1 (555) 123-4567" },
-                  { icon: Mail, text: "info@aetherhuboil.com" },
+                  { icon: MapPin, text: "15 Kofo Abayomi Street, Victoria Island, Lagos, Nigeria" },
+                  { icon: Phone, text: "+234 903 770 9551" },
+                  { icon: Mail, text: "info@rvjcoil.com" },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
