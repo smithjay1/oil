@@ -115,14 +115,14 @@ export default function About() {
               <h2 className="text-4xl font-bold mb-6">Leading the Future of Energy</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  AETHER HUB & OIL is a global leading center of high-grade petroleum products 
+                  RVJ&C Oil Ltd is Nigeria's leading provider of high-grade petroleum products 
                   for industrial and domestic energy needs across a global range of industries. 
                   We deliver through innovation, quality, sustainability and the highest 
                   level of service. Our operations are committed to the strictest 
                   environmental standards and international regulations.
                 </p>
                 <p>
-                  At AETHER HUB & OIL, we leverage cutting-edge technology and decades of expertise 
+                  At RVJ&C Oil Ltd, we leverage cutting-edge technology and decades of expertise 
                   to extract, refine, and distribute premium petroleum products. Our operations 
                   span across six continents, ensuring reliable energy solutions that power 
                   industries, communities, and economies worldwide.
@@ -144,7 +144,7 @@ export default function About() {
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=800&h=600&fit=crop&auto=format"
-                  alt="AETHER HUB & OIL Energy Infrastructure"
+                  alt="RVJ&C Oil Ltd Energy Infrastructure"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -168,7 +168,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl font-bold text-center mb-12">AETHER HUB & OIL <span className="text-gold">Interactive Presentation</span></h2>
+            <h2 className="text-5xl font-bold text-center mb-12">RVJ&C Oil Ltd <span className="text-gold">Interactive Presentation</span></h2>
 
             {/* Blackboard Container */}
             <div className="aspect-video bg-black rounded-lg overflow-hidden relative border-8 border-gray-800 shadow-2xl">
@@ -216,7 +216,7 @@ export default function About() {
                 >
                   {/* Animated underline */}
                   <span className="relative">
-                    AETHER HUB & OIL
+                    RVJ&C Oil Ltd
                     <motion.div
                       className="absolute bottom-0 left-0 h-1 bg-white"
                       initial={{ width: 0 }}
@@ -580,7 +580,7 @@ export default function About() {
                 <div>
                   <p className="mb-4 text-lg">
                     Following business principles is paramount to our daily business actions and the economic 
-                    success of AETHER HUB & OIL. Our success depends on the collective energy, innovation 
+                    success of RVJ&C Oil Ltd. Our success depends on the collective energy, innovation 
                     and integrity of our employees and business partners. We support our people to ask 
                     questions and to report any behavior that does not follow:
                   </p>
@@ -823,7 +823,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <p className="text-muted-foreground text-lg">
-              &copy; 2024 AETHER HUB & OIL. All rights reserved.
+              &copy; 2024 RVJ&C Oil Ltd. All rights reserved.
             </p>
           </motion.div>
         </div>
