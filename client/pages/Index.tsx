@@ -135,7 +135,7 @@ export default function Index() {
               { name: "Home", href: "#home" },
               { name: "Services", href: "#services" },
               { name: "About", href: "/about" },
-              { name: "Gallery", href: "/gallery" },
+              { name: "Sales", href: "/sales" },
               { name: "Contact", href: "#contact" }
             ].map((item, index) => (
               <motion.a
