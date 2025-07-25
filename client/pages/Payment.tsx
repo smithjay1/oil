@@ -129,7 +129,7 @@ Please confirm this order and provide payment instructions.
     `.trim();
 
     // Note: Replace this with the actual WhatsApp number
-    const whatsappNumber = "1234567890"; // User will provide this
+    const whatsappNumber = "2349037709551"; // User will provide this
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     
     // Open WhatsApp
@@ -171,9 +171,10 @@ Please confirm this order and provide payment instructions.
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200"
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
               alt="RVJ&C Oil Ltd"
-              className="h-8"
+              className="h-8 font-bold"
+              style={{ fontWeight: 'bold' }}
             />
           </motion.div>
           <Button 
@@ -466,7 +467,7 @@ Please confirm this order and provide payment instructions.
                     className="bg-gold text-gold-foreground hover:bg-gold/90 px-12 py-4 text-lg font-semibold"
                   >
                     <Phone className="w-5 h-5 mr-2" />
-                    Complete Order via WhatsApp
+                    Get Started via WhatsApp
                   </Button>
                 </motion.div>
               </form>
