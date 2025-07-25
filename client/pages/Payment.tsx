@@ -6,16 +6,26 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CreditCard, Truck, Phone, Shield, CheckCircle } from "lucide-react";
+import { ArrowLeft, CreditCard, Truck, Phone, Shield, CheckCircle, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LiquidChrome from "@/components/LiquidChrome";
 
+interface CartItem {
+  id: number;
+  name: string;
+  type: string;
+  price: number;
+  unit: string;
+  image: string;
+  quantity: number;
+}
+
 export default function Payment() {
   const location = useLocation();
   const navigate = useNavigate();
-  const selectedProduct = location.state?.selectedProduct;
+  const cartItems: CartItem[] = location.state?.cartItems || [];
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -26,19 +36,19 @@ export default function Payment() {
     address: "",
     city: "",
     country: "",
-    quantity: 1,
     paymentMethod: "",
     specialRequirements: "",
   });
 
   const [errors, setErrors] = useState({});
 
-  if (!selectedProduct) {
+  if (!cartItems || cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-dark-bg text-foreground flex items-center justify-center">
-        <Card className="bg-dark-card border-dark-border p-8 text-center">
-          <h2 className="text-2xl font-bold text-gold mb-4">No Product Selected</h2>
-          <p className="text-muted-foreground mb-6">Please select a product from our sales page first.</p>
+        <Card className="bg-dark-card border-dark-border p-8 text-center max-w-md">
+          <ShoppingCart className="w-16 h-16 mx-auto text-gold mb-4" />
+          <h2 className="text-2xl font-bold text-gold mb-4">Empty Cart</h2>
+          <p className="text-muted-foreground mb-6">Please add items to your cart before proceeding to payment.</p>
           <Button onClick={() => navigate('/sales')} className="bg-gold text-gold-foreground hover:bg-gold/90">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Sales
@@ -68,14 +78,17 @@ export default function Payment() {
     if (!formData.city.trim()) newErrors.city = "City is required";
     if (!formData.country.trim()) newErrors.country = "Country is required";
     if (!formData.paymentMethod) newErrors.paymentMethod = "Payment method is required";
-    if (formData.quantity < 1) newErrors.quantity = "Quantity must be at least 1";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  const calculateSubtotal = () => {
+    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
   const calculateTotal = () => {
-    return (selectedProduct.price * formData.quantity).toFixed(2);
+    return calculateSubtotal(); // You can add taxes, shipping, etc. here later
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -85,16 +98,18 @@ export default function Payment() {
       return;
     }
 
-    // Create WhatsApp message
+    // Create detailed WhatsApp message for multiple items
+    const itemsList = cartItems.map(item => 
+      `• ${item.name} (${item.type})\n  Price: $${item.price} ${item.unit}\n  Quantity: ${item.quantity}\n  Subtotal: $${(item.price * item.quantity).toFixed(2)}`
+    ).join('\n\n');
+
     const whatsappMessage = `
 🛢️ *AETHER HUB & OIL - New Order Request*
 
-*Product Details:*
-• Product: ${selectedProduct.name}
-• Type: ${selectedProduct.type}
-• Unit Price: $${selectedProduct.price} ${selectedProduct.unit}
-• Quantity: ${formData.quantity}
-• Total Amount: $${calculateTotal()}
+*ORDER SUMMARY:*
+${itemsList}
+
+*TOTAL AMOUNT: $${calculateTotal().toFixed(2)}*
 
 *Customer Information:*
 • Name: ${formData.firstName} ${formData.lastName}
@@ -216,41 +231,44 @@ Please confirm this order and provide payment instructions.
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="aspect-video rounded-lg overflow-hidden">
-                    <img
-                      src={selectedProduct.image}
-                      alt={selectedProduct.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-lg text-gold">{selectedProduct.name}</h3>
-                    <p className="text-muted-foreground text-sm">{selectedProduct.type}</p>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Badge className="bg-gold text-gold-foreground">
-                      <CheckCircle className="w-3 h-3 mr-1" />
-                      In Stock
-                    </Badge>
+                  <div className="space-y-3 max-h-64 overflow-y-auto">
+                    {cartItems.map((item) => (
+                      <div key={item.id} className="flex gap-3 p-3 bg-dark-bg rounded-lg">
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-12 h-12 rounded object-cover"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-gold text-sm truncate">{item.name}</h4>
+                          <p className="text-xs text-muted-foreground">{item.type}</p>
+                          <div className="flex justify-between items-center mt-1">
+                            <span className="text-xs">${item.price} {item.unit}</span>
+                            <span className="text-xs font-semibold">Qty: {item.quantity}</span>
+                          </div>
+                          <div className="text-sm font-bold text-gold">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
                   <Separator className="bg-dark-border" />
 
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Unit Price:</span>
-                      <span className="font-semibold">${selectedProduct.price} {selectedProduct.unit}</span>
+                      <span>Subtotal ({cartItems.length} items):</span>
+                      <span className="font-semibold">${calculateSubtotal().toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Quantity:</span>
-                      <span className="font-semibold">{formData.quantity}</span>
+                      <span>Shipping:</span>
+                      <span className="font-semibold">Calculated after quote</span>
                     </div>
                     <Separator className="bg-dark-border" />
                     <div className="flex justify-between text-lg font-bold text-gold">
                       <span>Total:</span>
-                      <span>${calculateTotal()}</span>
+                      <span>${calculateTotal().toFixed(2)}</span>
                     </div>
                   </div>
 
@@ -398,37 +416,23 @@ Please confirm this order and provide payment instructions.
                 {/* Order Details */}
                 <Card className="bg-dark-card border-dark-border">
                   <CardHeader>
-                    <CardTitle className="text-xl text-gold">Order Details</CardTitle>
+                    <CardTitle className="text-xl text-gold">Payment & Additional Details</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="quantity">Quantity *</Label>
-                        <Input
-                          id="quantity"
-                          type="number"
-                          min="1"
-                          value={formData.quantity}
-                          onChange={(e) => handleInputChange('quantity', parseInt(e.target.value) || 1)}
-                          className="bg-dark-bg border-dark-border focus:border-gold"
-                        />
-                        {errors.quantity && <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>}
-                      </div>
-                      <div>
-                        <Label htmlFor="paymentMethod">Payment Method *</Label>
-                        <Select onValueChange={(value) => handleInputChange('paymentMethod', value)}>
-                          <SelectTrigger className="bg-dark-bg border-dark-border focus:border-gold">
-                            <SelectValue placeholder="Select payment method" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-dark-card border-dark-border">
-                            <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
-                            <SelectItem value="letter-of-credit">Letter of Credit</SelectItem>
-                            <SelectItem value="cash-advance">Cash in Advance</SelectItem>
-                            <SelectItem value="open-account">Open Account</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        {errors.paymentMethod && <p className="text-red-500 text-sm mt-1">{errors.paymentMethod}</p>}
-                      </div>
+                    <div>
+                      <Label htmlFor="paymentMethod">Payment Method *</Label>
+                      <Select onValueChange={(value) => handleInputChange('paymentMethod', value)}>
+                        <SelectTrigger className="bg-dark-bg border-dark-border focus:border-gold">
+                          <SelectValue placeholder="Select payment method" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-dark-card border-dark-border">
+                          <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
+                          <SelectItem value="letter-of-credit">Letter of Credit</SelectItem>
+                          <SelectItem value="cash-advance">Cash in Advance</SelectItem>
+                          <SelectItem value="open-account">Open Account</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      {errors.paymentMethod && <p className="text-red-500 text-sm mt-1">{errors.paymentMethod}</p>}
                     </div>
 
                     <div>
