@@ -978,10 +978,14 @@ export default function Index() {
                 className="text-3xl font-bold text-gold mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                AETHER HUB & OIL
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200"
+                  alt="RVJ&C Oil Ltd"
+                  className="h-8"
+                />
               </motion.div>
               <p className="text-muted-foreground mb-6 text-lg">
-                Leading the future of energy with innovation, reliability, and sustainability.
+                Nigeria's premier oil company delivering quality petroleum products with reliability and excellence across the nation.
               </p>
               <div className="flex space-x-4">
                 {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
