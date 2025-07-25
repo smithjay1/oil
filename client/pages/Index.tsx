@@ -128,7 +128,11 @@ export default function Index() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            AETHER HUB & OIL
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200"
+              alt="RVJ&C Oil Ltd"
+              className="h-8"
+            />
           </motion.div>
           <div className="hidden md:flex space-x-8">
             {[
