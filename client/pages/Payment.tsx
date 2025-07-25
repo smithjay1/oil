@@ -3,10 +3,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CreditCard, Truck, Phone, Shield, CheckCircle, ShoppingCart } from "lucide-react";
+import {
+  ArrowLeft,
+  CreditCard,
+  Truck,
+  Phone,
+  Shield,
+  CheckCircle,
+  ShoppingCart,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -48,8 +62,13 @@ export default function Payment() {
         <Card className="bg-dark-card border-dark-border p-8 text-center max-w-md">
           <ShoppingCart className="w-16 h-16 mx-auto text-gold mb-4" />
           <h2 className="text-2xl font-bold text-gold mb-4">Empty Cart</h2>
-          <p className="text-muted-foreground mb-6">Please add items to your cart before proceeding to payment.</p>
-          <Button onClick={() => navigate('/sales')} className="bg-gold text-gold-foreground hover:bg-gold/90">
+          <p className="text-muted-foreground mb-6">
+            Please add items to your cart before proceeding to payment.
+          </p>
+          <Button
+            onClick={() => navigate("/sales")}
+            className="bg-gold text-gold-foreground hover:bg-gold/90"
+          >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Sales
           </Button>
@@ -59,32 +78,39 @@ export default function Payment() {
   }
 
   const handleInputChange = (field: string, value: string | number) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: null }));
+      setErrors((prev) => ({ ...prev, [field]: null }));
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
+
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First name is required";
     if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.email.includes('@')) newErrors.email = "Valid email is required";
+    if (!formData.email.includes("@"))
+      newErrors.email = "Valid email is required";
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-    if (!formData.company.trim()) newErrors.company = "Company name is required";
+    if (!formData.company.trim())
+      newErrors.company = "Company name is required";
     if (!formData.address.trim()) newErrors.address = "Address is required";
     if (!formData.city.trim()) newErrors.city = "City is required";
     if (!formData.country.trim()) newErrors.country = "Country is required";
-    if (!formData.paymentMethod) newErrors.paymentMethod = "Payment method is required";
+    if (!formData.paymentMethod)
+      newErrors.paymentMethod = "Payment method is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0,
+    );
   };
 
   const calculateTotal = () => {
@@ -93,15 +119,18 @@ export default function Payment() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     // Create detailed WhatsApp message for multiple items
-    const itemsList = cartItems.map(item => 
-      `• ${item.name} (${item.type})\n  Price: ₦${item.price.toLocaleString()} ${item.unit}\n  Quantity: ${item.quantity}\n  Subtotal: ₦${(item.price * item.quantity).toLocaleString()}`
-    ).join('\n\n');
+    const itemsList = cartItems
+      .map(
+        (item) =>
+          `• ${item.name} (${item.type})\n  Price: ₦${item.price.toLocaleString()} ${item.unit}\n  Quantity: ${item.quantity}\n  Subtotal: ₦${(item.price * item.quantity).toLocaleString()}`,
+      )
+      .join("\n\n");
 
     const whatsappMessage = `
 🛢️ *RVJ&C Oil Ltd - New Order Request*
@@ -123,7 +152,7 @@ ${formData.city}, ${formData.country}
 
 *Payment Method:* ${formData.paymentMethod}
 
-${formData.specialRequirements ? `*Special Requirements:*\n${formData.specialRequirements}` : ''}
+${formData.specialRequirements ? `*Special Requirements:*\n${formData.specialRequirements}` : ""}
 
 Please confirm this order and provide payment instructions.
     `.trim();
@@ -131,9 +160,9 @@ Please confirm this order and provide payment instructions.
     // Note: Replace this with the actual WhatsApp number
     const whatsappNumber = "2349037709551"; // User will provide this
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-    
+
     // Open WhatsApp
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
   };
 
   const containerVariants = {
@@ -176,9 +205,9 @@ Please confirm this order and provide payment instructions.
               className="h-8"
             />
           </motion.div>
-          <Button 
-            variant="outline" 
-            onClick={() => navigate('/sales')}
+          <Button
+            variant="outline"
+            onClick={() => navigate("/sales")}
             className="border-gold text-gold hover:bg-gold hover:text-gold-foreground"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -200,7 +229,7 @@ Please confirm this order and provide payment instructions.
           />
         </div>
         <div className="absolute inset-0 bg-dark-card/80" />
-        
+
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center"
@@ -208,7 +237,9 @@ Please confirm this order and provide payment instructions.
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl font-bold mb-4">Secure <span className="text-gold">Checkout</span></h1>
+            <h1 className="text-4xl font-bold mb-4">
+              Secure <span className="text-gold">Checkout</span>
+            </h1>
             <p className="text-muted-foreground text-lg">
               Complete your order details to proceed with your purchase
             </p>
@@ -237,18 +268,29 @@ Please confirm this order and provide payment instructions.
                 <CardContent className="space-y-4">
                   <div className="space-y-3 max-h-64 overflow-y-auto">
                     {cartItems.map((item) => (
-                      <div key={item.id} className="flex gap-3 p-3 bg-dark-bg rounded-lg">
+                      <div
+                        key={item.id}
+                        className="flex gap-3 p-3 bg-dark-bg rounded-lg"
+                      >
                         <img
                           src={item.image}
                           alt={item.name}
                           className="w-12 h-12 rounded object-cover"
                         />
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-gold text-sm truncate">{item.name}</h4>
-                          <p className="text-xs text-muted-foreground">{item.type}</p>
+                          <h4 className="font-semibold text-gold text-sm truncate">
+                            {item.name}
+                          </h4>
+                          <p className="text-xs text-muted-foreground">
+                            {item.type}
+                          </p>
                           <div className="flex justify-between items-center mt-1">
-                            <span className="text-xs">₦{item.price.toLocaleString()} {item.unit}</span>
-                            <span className="text-xs font-semibold">Qty: {item.quantity}</span>
+                            <span className="text-xs">
+                              ₦{item.price.toLocaleString()} {item.unit}
+                            </span>
+                            <span className="text-xs font-semibold">
+                              Qty: {item.quantity}
+                            </span>
                           </div>
                           <div className="text-sm font-bold text-gold">
                             ₦{(item.price * item.quantity).toLocaleString()}
@@ -263,11 +305,15 @@ Please confirm this order and provide payment instructions.
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Subtotal ({cartItems.length} items):</span>
-                      <span className="font-semibold">₦{calculateSubtotal().toLocaleString()}</span>
+                      <span className="font-semibold">
+                        ₦{calculateSubtotal().toLocaleString()}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span>Shipping:</span>
-                      <span className="font-semibold">Calculated after quote</span>
+                      <span className="font-semibold">
+                        Calculated after quote
+                      </span>
                     </div>
                     <Separator className="bg-dark-border" />
                     <div className="flex justify-between text-lg font-bold text-gold">
@@ -296,7 +342,9 @@ Please confirm this order and provide payment instructions.
                 {/* Personal Information */}
                 <Card className="bg-dark-card border-dark-border">
                   <CardHeader>
-                    <CardTitle className="text-xl text-gold">Personal Information</CardTitle>
+                    <CardTitle className="text-xl text-gold">
+                      Personal Information
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -305,22 +353,34 @@ Please confirm this order and provide payment instructions.
                         <Input
                           id="firstName"
                           value={formData.firstName}
-                          onChange={(e) => handleInputChange('firstName', e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("firstName", e.target.value)
+                          }
                           className="bg-dark-bg border-dark-border focus:border-gold"
                           placeholder="Enter your first name"
                         />
-                        {errors.firstName && <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>}
+                        {errors.firstName && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.firstName}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="lastName">Last Name *</Label>
                         <Input
                           id="lastName"
                           value={formData.lastName}
-                          onChange={(e) => handleInputChange('lastName', e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("lastName", e.target.value)
+                          }
                           className="bg-dark-bg border-dark-border focus:border-gold"
                           placeholder="Enter your last name"
                         />
-                        {errors.lastName && <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>}
+                        {errors.lastName && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.lastName}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -331,22 +391,34 @@ Please confirm this order and provide payment instructions.
                           id="email"
                           type="email"
                           value={formData.email}
-                          onChange={(e) => handleInputChange('email', e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("email", e.target.value)
+                          }
                           className="bg-dark-bg border-dark-border focus:border-gold"
                           placeholder="your.email@company.com"
                         />
-                        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                        {errors.email && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.email}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="phone">Phone Number *</Label>
                         <Input
                           id="phone"
                           value={formData.phone}
-                          onChange={(e) => handleInputChange('phone', e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("phone", e.target.value)
+                          }
                           className="bg-dark-bg border-dark-border focus:border-gold"
                           placeholder="+234 (0) 8XX XXX XXXX"
                         />
-                        {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                        {errors.phone && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.phone}
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -355,11 +427,17 @@ Please confirm this order and provide payment instructions.
                       <Input
                         id="company"
                         value={formData.company}
-                        onChange={(e) => handleInputChange('company', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("company", e.target.value)
+                        }
                         className="bg-dark-bg border-dark-border focus:border-gold"
                         placeholder="Your Company Name"
                       />
-                      {errors.company && <p className="text-red-500 text-sm mt-1">{errors.company}</p>}
+                      {errors.company && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.company}
+                        </p>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -367,7 +445,9 @@ Please confirm this order and provide payment instructions.
                 {/* Delivery Information */}
                 <Card className="bg-dark-card border-dark-border">
                   <CardHeader>
-                    <CardTitle className="text-xl text-gold">Delivery Information</CardTitle>
+                    <CardTitle className="text-xl text-gold">
+                      Delivery Information
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div>
@@ -375,11 +455,17 @@ Please confirm this order and provide payment instructions.
                       <Input
                         id="address"
                         value={formData.address}
-                        onChange={(e) => handleInputChange('address', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("address", e.target.value)
+                        }
                         className="bg-dark-bg border-dark-border focus:border-gold"
                         placeholder="Street address, building, suite (Nigerian address)"
                       />
-                      {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
+                      {errors.address && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.address}
+                        </p>
+                      )}
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
@@ -388,29 +474,49 @@ Please confirm this order and provide payment instructions.
                         <Input
                           id="city"
                           value={formData.city}
-                          onChange={(e) => handleInputChange('city', e.target.value)}
+                          onChange={(e) =>
+                            handleInputChange("city", e.target.value)
+                          }
                           className="bg-dark-bg border-dark-border focus:border-gold"
                           placeholder="City (e.g., Lagos, Abuja, Port Harcourt)"
                         />
-                        {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
+                        {errors.city && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.city}
+                          </p>
+                        )}
                       </div>
                       <div>
                         <Label htmlFor="country">Country *</Label>
-                        <Select onValueChange={(value) => handleInputChange('country', value)}>
+                        <Select
+                          onValueChange={(value) =>
+                            handleInputChange("country", value)
+                          }
+                        >
                           <SelectTrigger className="bg-dark-bg border-dark-border focus:border-gold">
                             <SelectValue placeholder="Select country" />
                           </SelectTrigger>
                           <SelectContent className="bg-dark-card border-dark-border">
                             <SelectItem value="nigeria">Nigeria</SelectItem>
-                            <SelectItem value="benin">Benin Republic</SelectItem>
+                            <SelectItem value="benin">
+                              Benin Republic
+                            </SelectItem>
                             <SelectItem value="ghana">Ghana</SelectItem>
                             <SelectItem value="cameroon">Cameroon</SelectItem>
-                            <SelectItem value="niger">Niger Republic</SelectItem>
+                            <SelectItem value="niger">
+                              Niger Republic
+                            </SelectItem>
                             <SelectItem value="chad">Chad</SelectItem>
-                            <SelectItem value="other">Other West African Countries</SelectItem>
+                            <SelectItem value="other">
+                              Other West African Countries
+                            </SelectItem>
                           </SelectContent>
                         </Select>
-                        {errors.country && <p className="text-red-500 text-sm mt-1">{errors.country}</p>}
+                        {errors.country && (
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.country}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </CardContent>
@@ -419,33 +525,60 @@ Please confirm this order and provide payment instructions.
                 {/* Order Details */}
                 <Card className="bg-dark-card border-dark-border">
                   <CardHeader>
-                    <CardTitle className="text-xl text-gold">Payment & Additional Details</CardTitle>
+                    <CardTitle className="text-xl text-gold">
+                      Payment & Additional Details
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div>
                       <Label htmlFor="paymentMethod">Payment Method *</Label>
-                      <Select onValueChange={(value) => handleInputChange('paymentMethod', value)}>
+                      <Select
+                        onValueChange={(value) =>
+                          handleInputChange("paymentMethod", value)
+                        }
+                      >
                         <SelectTrigger className="bg-dark-bg border-dark-border focus:border-gold">
                           <SelectValue placeholder="Select payment method" />
                         </SelectTrigger>
                         <SelectContent className="bg-dark-card border-dark-border">
-                          <SelectItem value="bank-transfer">Bank Transfer (Nigerian Banks)</SelectItem>
-                          <SelectItem value="domiciliary">Domiciliary Account</SelectItem>
-                          <SelectItem value="cash-advance">Cash in Advance</SelectItem>
-                          <SelectItem value="letter-of-credit">Letter of Credit</SelectItem>
-                          <SelectItem value="pos-cash">POS/Cash Payment</SelectItem>
+                          <SelectItem value="bank-transfer">
+                            Bank Transfer (Nigerian Banks)
+                          </SelectItem>
+                          <SelectItem value="domiciliary">
+                            Domiciliary Account
+                          </SelectItem>
+                          <SelectItem value="cash-advance">
+                            Cash in Advance
+                          </SelectItem>
+                          <SelectItem value="letter-of-credit">
+                            Letter of Credit
+                          </SelectItem>
+                          <SelectItem value="pos-cash">
+                            POS/Cash Payment
+                          </SelectItem>
                           <SelectItem value="ussd">USSD Banking</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.paymentMethod && <p className="text-red-500 text-sm mt-1">{errors.paymentMethod}</p>}
+                      {errors.paymentMethod && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.paymentMethod}
+                        </p>
+                      )}
                     </div>
 
                     <div>
-                      <Label htmlFor="specialRequirements">Special Requirements (Optional)</Label>
+                      <Label htmlFor="specialRequirements">
+                        Special Requirements (Optional)
+                      </Label>
                       <Textarea
                         id="specialRequirements"
                         value={formData.specialRequirements}
-                        onChange={(e) => handleInputChange('specialRequirements', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "specialRequirements",
+                            e.target.value,
+                          )
+                        }
                         className="bg-dark-bg border-dark-border focus:border-gold"
                         placeholder="Any special delivery instructions, quality requirements, or other notes..."
                         rows={4}
