@@ -100,16 +100,16 @@ export default function Payment() {
 
     // Create detailed WhatsApp message for multiple items
     const itemsList = cartItems.map(item => 
-      `• ${item.name} (${item.type})\n  Price: $${item.price} ${item.unit}\n  Quantity: ${item.quantity}\n  Subtotal: $${(item.price * item.quantity).toFixed(2)}`
+      `• ${item.name} (${item.type})\n  Price: ₦${item.price.toLocaleString()} ${item.unit}\n  Quantity: ${item.quantity}\n  Subtotal: ₦${(item.price * item.quantity).toLocaleString()}`
     ).join('\n\n');
 
     const whatsappMessage = `
-🛢️ *AETHER HUB & OIL - New Order Request*
+🛢️ *RVJ&C Oil Ltd - New Order Request*
 
 *ORDER SUMMARY:*
 ${itemsList}
 
-*TOTAL AMOUNT: $${calculateTotal().toFixed(2)}*
+*TOTAL AMOUNT: ₦${calculateTotal().toLocaleString()}*
 
 *Customer Information:*
 • Name: ${formData.firstName} ${formData.lastName}
@@ -170,7 +170,11 @@ Please confirm this order and provide payment instructions.
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            AETHER HUB & OIL
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2Fe3cb997d94fa42edb6c0b8821231d962?format=webp&width=200"
+              alt="RVJ&C Oil Ltd"
+              className="h-8"
+            />
           </motion.div>
           <Button 
             variant="outline" 
@@ -243,11 +247,11 @@ Please confirm this order and provide payment instructions.
                           <h4 className="font-semibold text-gold text-sm truncate">{item.name}</h4>
                           <p className="text-xs text-muted-foreground">{item.type}</p>
                           <div className="flex justify-between items-center mt-1">
-                            <span className="text-xs">${item.price} {item.unit}</span>
+                            <span className="text-xs">₦{item.price.toLocaleString()} {item.unit}</span>
                             <span className="text-xs font-semibold">Qty: {item.quantity}</span>
                           </div>
                           <div className="text-sm font-bold text-gold">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            ₦{(item.price * item.quantity).toLocaleString()}
                           </div>
                         </div>
                       </div>
@@ -259,7 +263,7 @@ Please confirm this order and provide payment instructions.
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Subtotal ({cartItems.length} items):</span>
-                      <span className="font-semibold">${calculateSubtotal().toFixed(2)}</span>
+                      <span className="font-semibold">₦{calculateSubtotal().toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Shipping:</span>
@@ -268,7 +272,7 @@ Please confirm this order and provide payment instructions.
                     <Separator className="bg-dark-border" />
                     <div className="flex justify-between text-lg font-bold text-gold">
                       <span>Total:</span>
-                      <span>${calculateTotal().toFixed(2)}</span>
+                      <span>₦{calculateTotal().toLocaleString()}</span>
                     </div>
                   </div>
 
@@ -340,7 +344,7 @@ Please confirm this order and provide payment instructions.
                           value={formData.phone}
                           onChange={(e) => handleInputChange('phone', e.target.value)}
                           className="bg-dark-bg border-dark-border focus:border-gold"
-                          placeholder="+1 (555) 123-4567"
+                          placeholder="+234 (0) 8XX XXX XXXX"
                         />
                         {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                       </div>
@@ -373,7 +377,7 @@ Please confirm this order and provide payment instructions.
                         value={formData.address}
                         onChange={(e) => handleInputChange('address', e.target.value)}
                         className="bg-dark-bg border-dark-border focus:border-gold"
-                        placeholder="Street address, building, suite"
+                        placeholder="Street address, building, suite (Nigerian address)"
                       />
                       {errors.address && <p className="text-red-500 text-sm mt-1">{errors.address}</p>}
                     </div>
@@ -386,7 +390,7 @@ Please confirm this order and provide payment instructions.
                           value={formData.city}
                           onChange={(e) => handleInputChange('city', e.target.value)}
                           className="bg-dark-bg border-dark-border focus:border-gold"
-                          placeholder="City"
+                          placeholder="City (e.g., Lagos, Abuja, Port Harcourt)"
                         />
                         {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
                       </div>
@@ -397,14 +401,13 @@ Please confirm this order and provide payment instructions.
                             <SelectValue placeholder="Select country" />
                           </SelectTrigger>
                           <SelectContent className="bg-dark-card border-dark-border">
-                            <SelectItem value="us">United States</SelectItem>
-                            <SelectItem value="ca">Canada</SelectItem>
-                            <SelectItem value="uk">United Kingdom</SelectItem>
-                            <SelectItem value="de">Germany</SelectItem>
-                            <SelectItem value="fr">France</SelectItem>
-                            <SelectItem value="au">Australia</SelectItem>
-                            <SelectItem value="jp">Japan</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
+                            <SelectItem value="nigeria">Nigeria</SelectItem>
+                            <SelectItem value="benin">Benin Republic</SelectItem>
+                            <SelectItem value="ghana">Ghana</SelectItem>
+                            <SelectItem value="cameroon">Cameroon</SelectItem>
+                            <SelectItem value="niger">Niger Republic</SelectItem>
+                            <SelectItem value="chad">Chad</SelectItem>
+                            <SelectItem value="other">Other West African Countries</SelectItem>
                           </SelectContent>
                         </Select>
                         {errors.country && <p className="text-red-500 text-sm mt-1">{errors.country}</p>}
@@ -426,10 +429,12 @@ Please confirm this order and provide payment instructions.
                           <SelectValue placeholder="Select payment method" />
                         </SelectTrigger>
                         <SelectContent className="bg-dark-card border-dark-border">
-                          <SelectItem value="bank-transfer">Bank Transfer</SelectItem>
-                          <SelectItem value="letter-of-credit">Letter of Credit</SelectItem>
+                          <SelectItem value="bank-transfer">Bank Transfer (Nigerian Banks)</SelectItem>
+                          <SelectItem value="domiciliary">Domiciliary Account</SelectItem>
                           <SelectItem value="cash-advance">Cash in Advance</SelectItem>
-                          <SelectItem value="open-account">Open Account</SelectItem>
+                          <SelectItem value="letter-of-credit">Letter of Credit</SelectItem>
+                          <SelectItem value="pos-cash">POS/Cash Payment</SelectItem>
+                          <SelectItem value="ussd">USSD Banking</SelectItem>
                         </SelectContent>
                       </Select>
                       {errors.paymentMethod && <p className="text-red-500 text-sm mt-1">{errors.paymentMethod}</p>}
