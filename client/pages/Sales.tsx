@@ -665,11 +665,10 @@ export default function Sales() {
                 className="text-3xl font-bold text-gold mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <img 
-                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800" 
-                  alt="RVJ&C Oil Ltd" 
-                  className="h-8 font-bold"
-                  style={{ fontWeight: 'bold' }}
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
+                  alt="RVJ&C Oil Ltd"
+                  className="h-8"
                 />
               </motion.div>
               <p className="text-muted-foreground mb-6 text-lg">
