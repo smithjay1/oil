@@ -65,10 +65,10 @@ export default function About() {
           <div className="hidden md:flex space-x-8">
             {[
               { name: "Home", href: "/" },
-              { name: "Services", href: "/#services" },
+              { name: "Services", href: "/services" },
               { name: "About", href: "/about" },
               { name: "Sales", href: "/sales" },
-              { name: "Contact", href: "/#contact" },
+              { name: "Contact", href: "/contact" },
             ].map((item, index) => (
               <motion.a
                 key={item.name}
