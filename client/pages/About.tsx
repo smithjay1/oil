@@ -11,10 +11,12 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import LiquidChrome from "@/components/LiquidChrome";
 
 export default function About() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
