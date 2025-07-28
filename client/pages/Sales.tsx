@@ -388,9 +388,9 @@ export default function Sales() {
                 key={item.name}
                 href={item.href}
                 className="hover:text-gold transition-colors relative"
-                whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ transform: "translateY(-2px)" }}
+                initial={{ opacity: 0, transform: "translateY(-20px)" }}
+                animate={{ opacity: 1, transform: "translateY(0px)" }}
                 transition={{ delay: 0.1 }}
               >
                 {item.name}
@@ -567,8 +567,8 @@ export default function Sales() {
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(50px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-6xl font-bold mb-6">
@@ -584,8 +584,8 @@ export default function Sales() {
           {/* Category Filter */}
           <motion.div
             className="flex justify-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(30px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             <div className="flex flex-wrap gap-3">
@@ -718,8 +718,8 @@ export default function Sales() {
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(30px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
