@@ -355,7 +355,7 @@ export default function Services() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
                 <div className="flex items-center gap-2 text-gold">
                   <Phone className="w-5 h-5" />
-                  <span className="font-semibold">+234 903 770 9551</span>
+                  <span className="font-semibold">+2347025340480</span>
                 </div>
                 <div className="flex items-center gap-2 text-gold">
                   <Mail className="w-5 h-5" />
