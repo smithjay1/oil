@@ -23,6 +23,7 @@ import LiquidChrome from "@/components/LiquidChrome";
 
 export default function Contact() {
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
