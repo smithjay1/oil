@@ -206,7 +206,11 @@ export default function Index() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </motion.button>
         </div>
 
@@ -319,7 +323,6 @@ export default function Index() {
                 OIL LTD
               </motion.span>
               <br />
-
               {/* Animated underline */}
               <motion.div
                 className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"
@@ -365,7 +368,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   className="bg-gold text-gold-foreground hover:bg-gold/90 relative overflow-hidden group px-8 py-4 text-lg"
-                  onClick={() => window.location.href = '/services'}
+                  onClick={() => (window.location.href = "/services")}
                   disabled={isLoading}
                 >
                   <AnimatePresence mode="wait">
@@ -417,7 +420,7 @@ export default function Index() {
                   size="lg"
                   variant="outline"
                   className="border-gold text-gold hover:bg-gold hover:text-gold-foreground px-8 py-4 text-lg relative overflow-hidden group"
-                  onClick={() => window.location.href = '/about'}
+                  onClick={() => (window.location.href = "/about")}
                 >
                   <span className="relative z-10">Learn More</span>
                   <motion.div
