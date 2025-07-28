@@ -44,10 +44,13 @@ export default function Sales() {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: {
+      opacity: 0,
+      transform: "translateY(20px)"
+    },
     visible: {
-      y: 0,
       opacity: 1,
+      transform: "translateY(0px)",
       transition: {
         type: "spring",
         stiffness: 100,
@@ -401,13 +404,13 @@ export default function Sales() {
           </div>
           <div className="flex items-center gap-4">
             {/* Cart Button */}
-            <motion.button
-              onClick={() => setShowCart(!showCart)}
+            <motion.div
               className="relative"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Button
+                onClick={() => setShowCart(!showCart)}
                 variant="outline"
                 className="border-gold text-gold hover:bg-gold hover:text-gold-foreground"
               >
@@ -419,7 +422,7 @@ export default function Sales() {
                   </Badge>
                 )}
               </Button>
-            </motion.button>
+            </motion.div>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
