@@ -49,7 +49,7 @@ export default function About() {
           >
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
-              alt="RVJ&C Oil Ltd"
+              alt="RV J&C OIL LTD"
               className="h-8"
             />
           </motion.div>
@@ -110,7 +110,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-6xl font-bold mb-6">
-              About <span className="text-gold">RVJ&C Oil Ltd</span>
+              About <span className="text-gold">RV J&C OIL LTD</span>
             </h1>
             <p className="text-muted-foreground max-w-3xl mx-auto text-xl">
               A global leader in petroleum extraction, refining, and
@@ -131,7 +131,7 @@ export default function About() {
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  RVJ&C Oil Ltd is Nigeria's leading provider of high-grade
+                  RV J&C OIL LTD is Nigeria's leading provider of high-grade
                   petroleum products for industrial and domestic energy needs
                   across a global range of industries. We deliver through
                   innovation, quality, sustainability and the highest level of
@@ -139,7 +139,7 @@ export default function About() {
                   environmental standards and international regulations.
                 </p>
                 <p>
-                  At RVJ&C Oil Ltd, we leverage cutting-edge technology and
+                  At RV J&C OIL LTD, we leverage cutting-edge technology and
                   decades of expertise to extract, refine, and distribute
                   premium petroleum products. Our operations span across six
                   continents, ensuring reliable energy solutions that power
@@ -161,7 +161,7 @@ export default function About() {
               <div className="aspect-video rounded-lg overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=800&h=600&fit=crop&auto=format"
-                  alt="RVJ&C Oil Ltd Energy Infrastructure"
+                  alt="RV J&C OIL LTD Energy Infrastructure"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -186,7 +186,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <h2 className="text-5xl font-bold text-center mb-12">
-              RVJ&C Oil Ltd{" "}
+              RV J&C OIL LTD{" "}
               <span className="text-gold">Interactive Presentation</span>
             </h2>
 
@@ -236,7 +236,7 @@ export default function About() {
                 >
                   {/* Animated underline */}
                   <span className="relative">
-                    RVJ&C Oil Ltd
+                    RV J&C OIL LTD
                     <motion.div
                       className="absolute bottom-0 left-0 h-1 bg-white"
                       initial={{ width: 0 }}
@@ -610,7 +610,7 @@ export default function About() {
                 <div>
                   <p className="mb-4 text-lg">
                     Following business principles is paramount to our daily
-                    business actions and the economic success of RVJ&C Oil Ltd.
+                    business actions and the economic success of RV J&C OIL LTD.
                     Our success depends on the collective energy, innovation and
                     integrity of our employees and business partners. We support
                     our people to ask questions and to report any behavior that
@@ -850,7 +850,7 @@ export default function About() {
               >
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
-                  alt="RVJ&C Oil Ltd"
+                  alt="RV J&C OIL LTD"
                   className="h-8"
                 />
               </motion.div>
@@ -911,7 +911,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <p className="text-muted-foreground text-lg">
-              &copy; 2024 RVJ&C Oil Ltd. All rights reserved.
+              &copy; 2024 RV J&C OIL LTD. All rights reserved.
             </p>
           </motion.div>
         </div>
