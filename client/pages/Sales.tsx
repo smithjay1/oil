@@ -367,7 +367,7 @@ export default function Sales() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <motion.div
             className="text-2xl font-bold text-gold"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ transform: "scale(1.05)" }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img
@@ -794,7 +794,7 @@ export default function Sales() {
             <motion.div variants={itemVariants}>
               <motion.div
                 className="text-3xl font-bold text-gold mb-6"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ transform: "scale(1.05)" }}
               >
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
