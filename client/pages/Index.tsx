@@ -266,21 +266,7 @@ export default function Index() {
                 OIL LTD
               </motion.span>
               <br />
-              <motion.span
-                className="inline-block text-gold"
-                variants={itemVariants}
-              >
-                &
-              </motion.span>{" "}
-              <motion.span
-                className="inline-block text-foreground hover:text-gold transition-colors"
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.1,
-                }}
-              >
-                OIL
-              </motion.span>
+
               {/* Animated underline */}
               <motion.div
                 className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"
