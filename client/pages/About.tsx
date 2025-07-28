@@ -8,6 +8,8 @@ import {
   Zap,
   Shield,
   Globe,
+  Menu,
+  X,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import LiquidChrome from "@/components/LiquidChrome";
