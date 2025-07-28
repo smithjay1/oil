@@ -272,7 +272,7 @@ export default function Index() {
                   scale: 1.1,
                 }}
               >
-                HUB
+                OIL LTD
               </motion.span>
               <br />
               <motion.span
