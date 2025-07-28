@@ -16,6 +16,8 @@ import {
   Award,
   Users,
   TrendingUp,
+  Menu,
+  X,
 } from "lucide-react";
 import {
   motion,
