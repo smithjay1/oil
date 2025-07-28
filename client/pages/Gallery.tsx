@@ -288,7 +288,7 @@ export default function Gallery() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            AETHER HUB & OIL
+            RV J&C OIL LTD
           </motion.div>
           <div className="hidden md:flex space-x-8">
             {[
@@ -567,7 +567,7 @@ export default function Gallery() {
                 className="text-3xl font-bold text-gold mb-6"
                 whileHover={{ scale: 1.05 }}
               >
-                AETHER HUB & OIL
+                RV J&C OIL LTD
               </motion.div>
               <p className="text-muted-foreground mb-6 text-lg">
                 Leading the future of energy with innovation, reliability, and sustainability.
