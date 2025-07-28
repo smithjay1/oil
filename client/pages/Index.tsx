@@ -160,7 +160,7 @@ export default function Index() {
           >
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
-              alt="RVJ&C Oil Ltd"
+              alt="RV J&C OIL LTD"
               className="h-8"
             />
           </motion.div>
@@ -992,7 +992,7 @@ export default function Index() {
               >
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
-                  alt="RVJ&C Oil Ltd"
+                  alt="RV J&C OIL LTD"
                   className="h-8"
                 />
               </motion.div>
@@ -1065,7 +1065,7 @@ export default function Index() {
             viewport={{ once: true }}
           >
             <p className="text-muted-foreground text-lg">
-              &copy; 2024 RVJ&C Oil Ltd. All rights reserved.
+              &copy; 2024 RV J&C OIL LTD. All rights reserved.
             </p>
           </motion.div>
         </div>
