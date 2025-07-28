@@ -236,8 +236,8 @@ Please confirm this order and provide payment instructions.
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(30px)" }}
+            animate={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl font-bold mb-4">
