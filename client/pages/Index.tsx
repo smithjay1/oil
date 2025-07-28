@@ -326,7 +326,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   className="bg-gold text-gold-foreground hover:bg-gold/90 relative overflow-hidden group px-8 py-4 text-lg"
-                  onClick={handleCTAClick}
+                  onClick={() => window.location.href = '/services'}
                   disabled={isLoading}
                 >
                   <AnimatePresence mode="wait">
