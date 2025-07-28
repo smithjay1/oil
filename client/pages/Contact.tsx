@@ -119,14 +119,72 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-foreground">
-      <LiquidChrome />
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <motion.div
+            className="text-2xl font-bold text-gold"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
+              alt="RV J&C OIL LTD"
+              className="h-8"
+            />
+          </motion.div>
+          <div className="hidden md:flex space-x-8">
+            {[
+              { name: "Home", href: "/" },
+              { name: "Services", href: "/services" },
+              { name: "About", href: "/about" },
+              { name: "Sales", href: "/sales" },
+              { name: "Contact", href: "/contact" },
+            ].map((item, index) => (
+              <motion.a
+                key={item.name}
+                href={item.href}
+                className="hover:text-gold transition-colors relative"
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                {item.name}
+                <motion.div
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold"
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
+            ))}
+          </div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button className="bg-gold text-gold-foreground hover:bg-gold/90">
+              Get Quote
+            </Button>
+          </motion.div>
+        </div>
+      </nav>
+
+      {/* Background */}
+      <div className="absolute inset-0 opacity-20">
+        <LiquidChrome
+          baseColor={[0.8, 0.6, 0.1]}
+          speed={0.3}
+          amplitude={0.3}
+          frequencyX={1.5}
+          frequencyY={1.5}
+          interactive={false}
+        />
+      </div>
+      <div className="absolute inset-0 bg-dark-bg/80" />
 
       <motion.div
-        className="relative z-10 container mx-auto px-4 py-12"
+        className="relative z-10 container mx-auto px-4 pt-24 pb-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{ opacity: 0 }}
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
