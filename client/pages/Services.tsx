@@ -207,7 +207,6 @@ export default function Services() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{ opacity: 0 }}
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
