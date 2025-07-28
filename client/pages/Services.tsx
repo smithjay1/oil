@@ -407,14 +407,34 @@ export default function Services() {
                 RV J&C OIL LTD
               </motion.div>
               <p className="text-muted-foreground mb-6 text-lg">
-                Nigeria's premier oil company delivering quality petroleum products with reliability and excellence across the nation.
+                Nigeria's premier oil company delivering quality petroleum
+                products with reliability and excellence across the nation.
               </p>
             </motion.div>
 
             {[
-              { title: "Services", items: ["Oil Exploration", "Refinery Operations", "Distribution", "Consulting"] },
-              { title: "Company", items: ["About Us", "Careers", "News", "Investors"] },
-              { title: "Support", items: ["Contact", "Documentation", "Privacy Policy", "Terms of Service"] },
+              {
+                title: "Services",
+                items: [
+                  "Oil Exploration",
+                  "Refinery Operations",
+                  "Distribution",
+                  "Consulting",
+                ],
+              },
+              {
+                title: "Company",
+                items: ["About Us", "Careers", "News", "Investors"],
+              },
+              {
+                title: "Support",
+                items: [
+                  "Contact",
+                  "Documentation",
+                  "Privacy Policy",
+                  "Terms of Service",
+                ],
+              },
             ].map((column, columnIndex) => (
               <motion.div key={columnIndex} variants={itemVariants}>
                 <h4 className="font-semibold mb-6 text-xl">{column.title}</h4>
