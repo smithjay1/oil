@@ -43,11 +43,11 @@ export default function Contact() {
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)",
+      y: 20,
     },
     visible: {
       opacity: 1,
-      transform: "translateY(0px)",
+      y: 0,
       transition: {
         duration: 0.6,
         ease: [0.645, 0.045, 0.355, 1],
@@ -83,7 +83,7 @@ export default function Contact() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      details: ["info@aetherhub.com", "emergency@aetherhub.com"],
+      details: ["info@rvjcoil.com", "emergency@rvjcoil.com"],
       description: "We respond within 24 hours",
     },
     {
@@ -119,14 +119,72 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-foreground">
-      <LiquidChrome />
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <motion.div
+            className="text-2xl font-bold text-gold"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F3c53530fe1d345289e8f669fefdff8f9?format=webp&width=800"
+              alt="RV J&C OIL LTD"
+              className="h-8"
+            />
+          </motion.div>
+          <div className="hidden md:flex space-x-8">
+            {[
+              { name: "Home", href: "/" },
+              { name: "Services", href: "/services" },
+              { name: "About", href: "/about" },
+              { name: "Sales", href: "/sales" },
+              { name: "Contact", href: "/contact" },
+            ].map((item, index) => (
+              <motion.a
+                key={item.name}
+                href={item.href}
+                className="hover:text-gold transition-colors relative"
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                {item.name}
+                <motion.div
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold"
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
+            ))}
+          </div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button className="bg-gold text-gold-foreground hover:bg-gold/90">
+              Get Quote
+            </Button>
+          </motion.div>
+        </div>
+      </nav>
+
+      {/* Background */}
+      <div className="absolute inset-0 opacity-20">
+        <LiquidChrome
+          baseColor={[0.8, 0.6, 0.1]}
+          speed={0.3}
+          amplitude={0.3}
+          frequencyX={1.5}
+          frequencyY={1.5}
+          interactive={false}
+        />
+      </div>
+      <div className="absolute inset-0 bg-dark-bg/80" />
 
       <motion.div
-        className="relative z-10 container mx-auto px-4 py-12"
+        className="relative z-10 container mx-auto px-4 pt-24 pb-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{ opacity: 0 }}
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
@@ -420,6 +478,86 @@ export default function Contact() {
           </Card>
         </motion.div>
       </motion.div>
+
+      {/* Footer */}
+      <footer className="bg-dark-card border-t border-dark-border py-16">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="grid lg:grid-cols-4 gap-12"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={itemVariants}>
+              <motion.div
+                className="text-3xl font-bold text-gold mb-6"
+                whileHover={{ scale: 1.05 }}
+              >
+                RV J&C OIL LTD
+              </motion.div>
+              <p className="text-muted-foreground mb-6 text-lg">
+                Nigeria's premier oil company delivering quality petroleum
+                products with reliability and excellence across the nation.
+              </p>
+            </motion.div>
+
+            {[
+              {
+                title: "Services",
+                items: [
+                  "Oil Exploration",
+                  "Refinery Operations",
+                  "Distribution",
+                  "Consulting",
+                ],
+              },
+              {
+                title: "Company",
+                items: ["About Us", "Careers", "News", "Investors"],
+              },
+              {
+                title: "Support",
+                items: [
+                  "Contact",
+                  "Documentation",
+                  "Privacy Policy",
+                  "Terms of Service",
+                ],
+              },
+            ].map((column, columnIndex) => (
+              <motion.div key={columnIndex} variants={itemVariants}>
+                <h4 className="font-semibold mb-6 text-xl">{column.title}</h4>
+                <ul className="space-y-3">
+                  {column.items.map((item, index) => (
+                    <motion.li key={index}>
+                      <motion.a
+                        href="#"
+                        className="text-muted-foreground hover:text-gold transition-colors text-lg"
+                        whileHover={{ x: 5 }}
+                      >
+                        {item}
+                      </motion.a>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            className="border-t border-dark-border mt-12 pt-8 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-muted-foreground text-lg">
+              &copy; 2024 RV J&C OIL LTD. All rights reserved.
+            </p>
+          </motion.div>
+        </div>
+      </footer>
     </div>
   );
 }

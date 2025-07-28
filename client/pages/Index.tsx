@@ -148,8 +148,8 @@ export default function Index() {
     <div className="min-h-screen bg-dark-bg text-foreground overflow-x-hidden">
       {/* Animated Navigation */}
       <motion.nav
-        initial={{ transform: "translateY(-100px)" }}
-        animate={{ transform: "translateY(0px)" }}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
         className="fixed top-0 w-full z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border"
       >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -159,8 +159,8 @@ export default function Index() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
-              alt="RVJ&C Oil Ltd"
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F3c53530fe1d345289e8f669fefdff8f9?format=webp&width=800"
+              alt="RV J&C OIL LTD"
               className="h-8"
             />
           </motion.div>
@@ -176,9 +176,9 @@ export default function Index() {
                 key={item.name}
                 href={item.href}
                 className="hover:text-gold transition-colors relative"
-                whileHover={{ transform: "translateY(-2px)" }}
-                initial={{ opacity: 0, transform: "translateY(-20px)" }}
-                animate={{ opacity: 1, transform: "translateY(0px)" }}
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 {item.name}
@@ -263,7 +263,7 @@ export default function Index() {
                   scale: 1.1,
                 }}
               >
-                AETHER
+                RV J&C
               </motion.span>{" "}
               <motion.span
                 className="inline-block text-gold"
@@ -272,7 +272,7 @@ export default function Index() {
                   scale: 1.1,
                 }}
               >
-                HUB
+                OIL LTD
               </motion.span>
               <br />
               <motion.span
@@ -991,8 +991,8 @@ export default function Index() {
                 whileHover={{ scale: 1.05 }}
               >
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
-                  alt="RVJ&C Oil Ltd"
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F3c53530fe1d345289e8f669fefdff8f9?format=webp&width=800"
+                  alt="RV J&C OIL LTD"
                   className="h-8"
                 />
               </motion.div>
@@ -1065,7 +1065,7 @@ export default function Index() {
             viewport={{ once: true }}
           >
             <p className="text-muted-foreground text-lg">
-              &copy; 2024 RVJ&C Oil Ltd. All rights reserved.
+              &copy; 2024 RV J&C OIL LTD. All rights reserved.
             </p>
           </motion.div>
         </div>

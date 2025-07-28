@@ -4,7 +4,7 @@
 
 @layer base {
   /**
-   * AETHER HUB & OIL - Dark theme with gold accents
+   * RV J&C OIL LTD - Dark theme with gold accents
    * tailwind.config.ts expects the following color variables to be expressed as HSL values.
    */
   :root {
@@ -47,7 +47,7 @@
     --sidebar-border: 220 13% 20%;
     --sidebar-ring: 45 96% 64%;
 
-    /* Custom AETHER variables */
+    /* Custom RV J&C OIL LTD variables */
     --gold: 45 96% 64%;
     --gold-foreground: 220 13% 8%;
     --dark-bg: 220 13% 8%;

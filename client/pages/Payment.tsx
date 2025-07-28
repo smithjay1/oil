@@ -133,7 +133,7 @@ export default function Payment() {
       .join("\n\n");
 
     const whatsappMessage = `
-🛢️ *RVJ&C Oil Ltd - New Order Request*
+🛢️ *RV J&C OIL LTD - New Order Request*
 
 *ORDER SUMMARY:*
 ${itemsList}
@@ -179,11 +179,11 @@ Please confirm this order and provide payment instructions.
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)",
+      y: 20,
     },
     visible: {
       opacity: 1,
-      transform: "translateY(0px)",
+      y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
@@ -203,8 +203,8 @@ Please confirm this order and provide payment instructions.
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
-              alt="RVJ&C Oil Ltd"
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F3c53530fe1d345289e8f669fefdff8f9?format=webp&width=800"
+              alt="RV J&C OIL LTD"
               className="h-8"
             />
           </motion.div>
@@ -236,8 +236,8 @@ Please confirm this order and provide payment instructions.
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center"
-            initial={{ opacity: 0, transform: "translateY(30px)" }}
-            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-4xl font-bold mb-4">
