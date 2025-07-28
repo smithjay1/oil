@@ -34,10 +34,13 @@ export default function Services() {
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: {
+      opacity: 0,
+      transform: "translateY(20px)"
+    },
     visible: {
-      y: 0,
       opacity: 1,
+      transform: "translateY(0px)",
       transition: {
         duration: 0.6,
         ease: [0.645, 0.045, 0.355, 1],
