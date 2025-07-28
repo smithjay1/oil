@@ -79,11 +79,7 @@ export default function About() {
               </motion.a>
             ))}
           </div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-gold text-gold-foreground hover:bg-gold/90">
-              Get Started
-            </Button>
-          </motion.div>
+
         </div>
       </nav>
 
