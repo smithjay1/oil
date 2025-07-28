@@ -148,8 +148,8 @@ export default function Index() {
     <div className="min-h-screen bg-dark-bg text-foreground overflow-x-hidden">
       {/* Animated Navigation */}
       <motion.nav
-        initial={{ transform: "translateY(-100px)" }}
-        animate={{ transform: "translateY(0px)" }}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
         className="fixed top-0 w-full z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border"
       >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -176,9 +176,9 @@ export default function Index() {
                 key={item.name}
                 href={item.href}
                 className="hover:text-gold transition-colors relative"
-                whileHover={{ transform: "translateY(-2px)" }}
-                initial={{ opacity: 0, transform: "translateY(-20px)" }}
-                animate={{ opacity: 1, transform: "translateY(0px)" }}
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 {item.name}
