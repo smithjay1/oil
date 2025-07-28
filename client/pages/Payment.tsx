@@ -179,11 +179,11 @@ Please confirm this order and provide payment instructions.
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)",
+      y: 20,
     },
     visible: {
       opacity: 1,
-      transform: "translateY(0px)",
+      y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
