@@ -188,10 +188,22 @@ export default function Services() {
           </motion.div>
         </div>
       </nav>
-      <LiquidChrome />
+
+      {/* Background */}
+      <div className="absolute inset-0 opacity-20">
+        <LiquidChrome
+          baseColor={[0.8, 0.6, 0.1]}
+          speed={0.3}
+          amplitude={0.3}
+          frequencyX={1.5}
+          frequencyY={1.5}
+          interactive={false}
+        />
+      </div>
+      <div className="absolute inset-0 bg-dark-bg/80" />
 
       <motion.div
-        className="relative z-10 container mx-auto px-4 py-12"
+        className="relative z-10 container mx-auto px-4 pt-24 pb-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
