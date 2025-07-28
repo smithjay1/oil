@@ -133,7 +133,7 @@ export default function Payment() {
       .join("\n\n");
 
     const whatsappMessage = `
-🛢️ *RVJ&C Oil Ltd - New Order Request*
+���️ *RV J&C OIL LTD - New Order Request*
 
 *ORDER SUMMARY:*
 ${itemsList}
