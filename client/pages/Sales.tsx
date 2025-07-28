@@ -766,7 +766,7 @@ export default function Sales() {
               >
                 <motion.div
                   className="inline-flex items-center justify-center w-16 h-16 bg-gold rounded-full mb-6"
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ transform: "scale(1.1)" }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <feature.icon className="w-8 h-8 text-gold-foreground" />
