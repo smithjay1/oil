@@ -263,16 +263,7 @@ export default function Services() {
           </Card>
         </motion.div>
 
-        {/* Navigation */}
-        <motion.div variants={itemVariants} className="mt-12 text-center">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/')}
-            className="text-gold hover:bg-gold/10"
-          >
-            ← Back to Home
-          </Button>
-        </motion.div>
+
       </motion.div>
     </div>
   );
