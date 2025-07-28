@@ -77,19 +77,19 @@ export default function Contact() {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      details: ["Main: (555) 123-4567", "Emergency: (555) 987-6543"],
+      details: ["Main: +2347025340480", "Emergency: +2347025340480"],
       description: "Available 24/7 for emergency services",
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      details: ["info@rvjcoil.com", "emergency@rvjcoil.com"],
+      details: ["info@rvjc.co.uk", "emergency@rvjc.co.uk"],
       description: "We respond within 24 hours",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Location",
-      details: ["123 Energy Boulevard", "Industrial District, State 12345"],
+      details: ["30,Mobolaji Bank Anthony Way", "Ikeja Lagos"],
       description: "Serving nationwide with local expertise",
     },
     {
