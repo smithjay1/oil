@@ -406,8 +406,8 @@ export default function Sales() {
             {/* Cart Button */}
             <motion.div
               className="relative"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ transform: "scale(1.05)" }}
+              whileTap={{ transform: "scale(0.95)" }}
             >
               <Button
                 onClick={() => setShowCart(!showCart)}
@@ -598,8 +598,8 @@ export default function Sales() {
                       ? "bg-gold text-gold-foreground border-gold"
                       : "bg-dark-bg border-dark-border text-muted-foreground hover:border-gold hover:text-gold"
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ transform: "scale(1.05)" }}
+                  whileTap={{ transform: "scale(0.95)" }}
                 >
                   {category.name} ({category.count})
                 </motion.button>
