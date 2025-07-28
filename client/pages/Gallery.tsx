@@ -606,7 +606,7 @@ export default function Gallery() {
             viewport={{ once: true }}
           >
             <p className="text-muted-foreground text-lg">
-              &copy; 2024 AETHER HUB & OIL. All rights reserved.
+              &copy; 2024 RV J&C OIL LTD. All rights reserved.
             </p>
           </motion.div>
         </div>
