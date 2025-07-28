@@ -263,7 +263,7 @@ export default function Index() {
                   scale: 1.1,
                 }}
               >
-                AETHER
+                RV J&C
               </motion.span>{" "}
               <motion.span
                 className="inline-block text-gold"
