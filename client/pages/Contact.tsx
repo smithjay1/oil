@@ -128,7 +128,7 @@ export default function Contact() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F3c53530fe1d345289e8f669fefdff8f9?format=webp&width=800"
               alt="RV J&C OIL LTD"
               className="h-8"
             />
