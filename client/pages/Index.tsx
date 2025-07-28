@@ -148,8 +148,8 @@ export default function Index() {
     <div className="min-h-screen bg-dark-bg text-foreground overflow-x-hidden">
       {/* Animated Navigation */}
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
+        initial={{ transform: "translateY(-100px)" }}
+        animate={{ transform: "translateY(0px)" }}
         className="fixed top-0 w-full z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border"
       >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -167,18 +167,18 @@ export default function Index() {
           <div className="hidden md:flex space-x-8">
             {[
               { name: "Home", href: "#home" },
-              { name: "Services", href: "#services" },
+              { name: "Services", href: "/services" },
               { name: "About", href: "/about" },
               { name: "Sales", href: "/sales" },
-              { name: "Contact", href: "#contact" },
+              { name: "Contact", href: "/contact" },
             ].map((item, index) => (
               <motion.a
                 key={item.name}
                 href={item.href}
                 className="hover:text-gold transition-colors relative"
-                whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ transform: "translateY(-2px)" }}
+                initial={{ opacity: 0, transform: "translateY(-20px)" }}
+                animate={{ opacity: 1, transform: "translateY(0px)" }}
                 transition={{ delay: index * 0.1 }}
               >
                 {item.name}
@@ -960,127 +960,6 @@ export default function Index() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Enhanced Contact Section */}
-      <section
-        id="contact"
-        className="py-20 bg-dark-bg relative overflow-hidden"
-      >
-        <div className="absolute inset-0 opacity-20">
-          <LiquidChrome
-            baseColor={[0.6, 0.45, 0.08]} // Rich gold oil color
-            speed={0.8}
-            amplitude={0.6}
-            frequencyX={3}
-            frequencyY={3}
-            interactive={true}
-          />
-        </div>
-        <div className="absolute inset-0 bg-dark-bg/70" />
-
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-5xl font-bold mb-6">
-              Get In <span className="text-gold">Touch</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Ready to start your next energy project? Contact us today for a
-              consultation
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid lg:grid-cols-2 gap-16"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <motion.div variants={itemVariants}>
-              <h3 className="text-3xl font-semibold mb-8">
-                Contact Information
-              </h3>
-              <div className="space-y-6">
-                {[
-                  {
-                    icon: MapPin,
-                    text: "15 Kofo Abayomi Street, Victoria Island, Lagos, Nigeria",
-                  },
-                  { icon: Phone, text: "+234 903 770 9551" },
-                  { icon: Mail, text: "info@rvjcoil.com" },
-                ].map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-center space-x-4"
-                    whileHover={{ x: 10 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <motion.div
-                      className="w-12 h-12 bg-gold/20 rounded-lg flex items-center justify-center"
-                      whileHover={{
-                        scale: 1.1,
-                        backgroundColor: "rgba(255, 193, 7, 0.3)",
-                      }}
-                    >
-                      <item.icon className="w-6 h-6 text-gold" />
-                    </motion.div>
-                    <span className="text-lg">{item.text}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <form className="space-y-6">
-                {[
-                  { placeholder: "First Name", type: "text" },
-                  { placeholder: "Last Name", type: "text" },
-                  { placeholder: "Email Address", type: "email" },
-                ].map((field, index) => (
-                  <motion.input
-                    key={index}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    className="w-full bg-dark-card border border-dark-border rounded-lg px-6 py-4 focus:outline-none focus:border-gold transition-colors text-lg"
-                    whileFocus={{ scale: 1.02, borderColor: "#FFC107" }}
-                  />
-                ))}
-
-                <motion.textarea
-                  placeholder="Your Message"
-                  rows={6}
-                  className="w-full bg-dark-card border border-dark-border rounded-lg px-6 py-4 focus:outline-none focus:border-gold resize-none transition-colors text-lg"
-                  whileFocus={{ scale: 1.02, borderColor: "#FFC107" }}
-                />
-
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button className="w-full bg-gold text-gold-foreground hover:bg-gold/90 py-4 text-lg relative overflow-hidden">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      animate={{ x: ["-100%", "100%"] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatDelay: 3,
-                      }}
-                    />
-                    Send Message
-                  </Button>
-                </motion.div>
-              </form>
-            </motion.div>
           </motion.div>
         </div>
       </section>
