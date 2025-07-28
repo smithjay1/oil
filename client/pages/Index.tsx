@@ -964,8 +964,6 @@ export default function Index() {
         </div>
       </section>
 
-
-
       {/* Enhanced Footer */}
       <footer className="bg-dark-card border-t border-dark-border py-16 relative overflow-hidden">
         <motion.div

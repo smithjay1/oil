@@ -179,7 +179,7 @@ Please confirm this order and provide payment instructions.
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)"
+      transform: "translateY(20px)",
     },
     visible: {
       opacity: 1,

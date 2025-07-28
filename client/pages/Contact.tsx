@@ -22,11 +22,11 @@ import LiquidChrome from "@/components/LiquidChrome";
 export default function Contact() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
   });
 
   const containerVariants = {
@@ -43,7 +43,7 @@ export default function Contact() {
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)"
+      transform: "translateY(20px)",
     },
     visible: {
       opacity: 1,
@@ -58,14 +58,18 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     // You can add actual form submission logic here
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -74,43 +78,49 @@ export default function Contact() {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
       details: ["Main: (555) 123-4567", "Emergency: (555) 987-6543"],
-      description: "Available 24/7 for emergency services"
+      description: "Available 24/7 for emergency services",
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
       details: ["info@aetherhub.com", "emergency@aetherhub.com"],
-      description: "We respond within 24 hours"
+      description: "We respond within 24 hours",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Location",
       details: ["123 Energy Boulevard", "Industrial District, State 12345"],
-      description: "Serving nationwide with local expertise"
+      description: "Serving nationwide with local expertise",
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Business Hours",
       details: ["Mon-Fri: 7:00 AM - 6:00 PM", "24/7 Emergency Service"],
-      description: "Emergency response available anytime"
-    }
+      description: "Emergency response available anytime",
+    },
   ];
 
   const serviceTypes = [
-    { value: '', label: 'Select a service...' },
-    { value: 'bulk-delivery', label: 'Bulk Oil Delivery' },
-    { value: 'tank-maintenance', label: 'Storage Tank Installation & Maintenance' },
-    { value: 'lubricant-solutions', label: 'Lubricant Solutions' },
-    { value: 'oil-disposal', label: 'Used Oil Collection & Disposal' },
-    { value: 'emergency-service', label: 'Emergency Fueling & On-Site Service' },
-    { value: 'consultation', label: 'Consultation Services' },
-    { value: 'other', label: 'Other' }
+    { value: "", label: "Select a service..." },
+    { value: "bulk-delivery", label: "Bulk Oil Delivery" },
+    {
+      value: "tank-maintenance",
+      label: "Storage Tank Installation & Maintenance",
+    },
+    { value: "lubricant-solutions", label: "Lubricant Solutions" },
+    { value: "oil-disposal", label: "Used Oil Collection & Disposal" },
+    {
+      value: "emergency-service",
+      label: "Emergency Fueling & On-Site Service",
+    },
+    { value: "consultation", label: "Consultation Services" },
+    { value: "other", label: "Other" },
   ];
 
   return (
     <div className="min-h-screen bg-dark-bg text-foreground">
       <LiquidChrome />
-      
+
       <motion.div
         className="relative z-10 container mx-auto px-4 py-12"
         variants={containerVariants}
@@ -120,19 +130,26 @@ export default function Contact() {
       >
         {/* Header Section */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-gold/20 text-gold border-gold/30">
+          <Badge
+            variant="secondary"
+            className="mb-4 bg-gold/20 text-gold border-gold/30"
+          >
             Get In Touch
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gold to-yellow-400 bg-clip-text text-transparent">
             Contact Us
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Ready to discuss your petroleum oil needs? We're here to help with expert consultation and reliable service.
+            Ready to discuss your petroleum oil needs? We're here to help with
+            expert consultation and reliable service.
           </p>
         </motion.div>
 
         {/* Contact Information Cards */}
-        <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <motion.div
+          variants={itemVariants}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+        >
           {contactInfo.map((info, index) => (
             <motion.div
               key={index}
@@ -149,9 +166,13 @@ export default function Contact() {
                 </CardHeader>
                 <CardContent className="text-center">
                   {info.details.map((detail, idx) => (
-                    <p key={idx} className="font-semibold mb-1">{detail}</p>
+                    <p key={idx} className="font-semibold mb-1">
+                      {detail}
+                    </p>
                   ))}
-                  <p className="text-sm text-muted-foreground mt-2">{info.description}</p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    {info.description}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -169,7 +190,8 @@ export default function Contact() {
                   Send us a Message
                 </CardTitle>
                 <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  Fill out the form below and we'll get back to you as soon as
+                  possible.
                 </p>
               </CardHeader>
               <CardContent>
@@ -203,7 +225,7 @@ export default function Contact() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium text-gold mb-2 block">
@@ -252,8 +274,8 @@ export default function Contact() {
                     />
                   </div>
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full bg-gold hover:bg-gold/90 text-dark-bg font-semibold"
                     size="lg"
                   >
@@ -269,9 +291,12 @@ export default function Contact() {
           <motion.div variants={itemVariants}>
             <Card className="bg-dark-card border-dark-border h-full">
               <CardHeader>
-                <CardTitle className="text-2xl text-gold">Our Service Areas</CardTitle>
+                <CardTitle className="text-2xl text-gold">
+                  Our Service Areas
+                </CardTitle>
                 <p className="text-muted-foreground">
-                  We provide comprehensive petroleum oil services for various sectors:
+                  We provide comprehensive petroleum oil services for various
+                  sectors:
                 </p>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -279,54 +304,72 @@ export default function Contact() {
                   <div className="flex items-start gap-3">
                     <Building className="w-6 h-6 text-gold mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-gold">Commercial & Industrial</h3>
+                      <h3 className="font-semibold text-gold">
+                        Commercial & Industrial
+                      </h3>
                       <p className="text-sm text-muted-foreground">
-                        Manufacturing plants, warehouses, commercial buildings, and industrial facilities
+                        Manufacturing plants, warehouses, commercial buildings,
+                        and industrial facilities
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <Car className="w-6 h-6 text-gold mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-gold">Fleet & Transportation</h3>
+                      <h3 className="font-semibold text-gold">
+                        Fleet & Transportation
+                      </h3>
                       <p className="text-sm text-muted-foreground">
-                        Vehicle fleets, transportation companies, and logistics operations
+                        Vehicle fleets, transportation companies, and logistics
+                        operations
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start gap-3">
                     <Home className="w-6 h-6 text-gold mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-gold">Residential</h3>
                       <p className="text-sm text-muted-foreground">
-                        Heating oil delivery, residential tank maintenance, and home heating solutions
+                        Heating oil delivery, residential tank maintenance, and
+                        home heating solutions
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="border-t border-dark-border pt-6">
-                  <h3 className="font-semibold text-gold mb-3">Emergency Services Available</h3>
+                  <h3 className="font-semibold text-gold mb-3">
+                    Emergency Services Available
+                  </h3>
                   <div className="grid grid-cols-1 gap-2">
-                    <Badge variant="outline" className="border-gold/30 text-gold justify-start">
+                    <Badge
+                      variant="outline"
+                      className="border-gold/30 text-gold justify-start"
+                    >
                       24/7 Emergency Response
                     </Badge>
-                    <Badge variant="outline" className="border-gold/30 text-gold justify-start">
+                    <Badge
+                      variant="outline"
+                      className="border-gold/30 text-gold justify-start"
+                    >
                       Rapid On-Site Service
                     </Badge>
-                    <Badge variant="outline" className="border-gold/30 text-gold justify-start">
+                    <Badge
+                      variant="outline"
+                      className="border-gold/30 text-gold justify-start"
+                    >
                       Emergency Fuel Delivery
                     </Badge>
                   </div>
                 </div>
 
                 <div className="text-center pt-4">
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="border-gold text-gold hover:bg-gold/10"
-                    onClick={() => navigate('/services')}
+                    onClick={() => navigate("/services")}
                   >
                     View All Services
                   </Button>
@@ -340,32 +383,35 @@ export default function Contact() {
         <motion.div variants={itemVariants} className="text-center">
           <Card className="bg-gradient-to-r from-gold/10 to-yellow-400/10 border-gold/30 p-8">
             <CardContent>
-              <h2 className="text-3xl font-bold mb-4 text-gold">Need Immediate Assistance?</h2>
+              <h2 className="text-3xl font-bold mb-4 text-gold">
+                Need Immediate Assistance?
+              </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                For urgent petroleum oil needs or emergency services, contact us directly.
+                For urgent petroleum oil needs or emergency services, contact us
+                directly.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-gold hover:bg-gold/90 text-dark-bg font-semibold"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Call Emergency Line
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="border-gold text-gold hover:bg-gold/10"
-                  onClick={() => navigate('/services')}
+                  onClick={() => navigate("/services")}
                 >
                   View Services
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   className="border-gold text-gold hover:bg-gold/10"
-                  onClick={() => navigate('/payment')}
+                  onClick={() => navigate("/payment")}
                 >
                   Get Quote
                 </Button>
@@ -373,8 +419,6 @@ export default function Contact() {
             </CardContent>
           </Card>
         </motion.div>
-
-
       </motion.div>
     </div>
   );

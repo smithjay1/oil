@@ -46,7 +46,7 @@ export default function Sales() {
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)"
+      transform: "translateY(20px)",
     },
     visible: {
       opacity: 1,
@@ -424,7 +424,10 @@ export default function Sales() {
               </Button>
             </motion.div>
 
-            <motion.div whileHover={{ transform: "scale(1.05)" }} whileTap={{ transform: "scale(0.95)" }}>
+            <motion.div
+              whileHover={{ transform: "scale(1.05)" }}
+              whileTap={{ transform: "scale(0.95)" }}
+            >
               <Button
                 onClick={handleGetStarted}
                 className="bg-gold text-gold-foreground hover:bg-gold/90"
