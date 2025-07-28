@@ -359,7 +359,7 @@ export default function Services() {
                 </div>
                 <div className="flex items-center gap-2 text-gold">
                   <Mail className="w-5 h-5" />
-                  <span className="font-semibold">info@rvjcoil.com</span>
+                  <span className="font-semibold">info@rvjc.co.uk</span>
                 </div>
               </div>
 
