@@ -46,11 +46,11 @@ export default function Sales() {
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)",
+      y: 20,
     },
     visible: {
       opacity: 1,
-      transform: "translateY(0px)",
+      y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
@@ -367,7 +367,7 @@ export default function Sales() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <motion.div
             className="text-2xl font-bold text-gold"
-            whileHover={{ transform: "scale(1.05)" }}
+            whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             <img
@@ -388,9 +388,9 @@ export default function Sales() {
                 key={item.name}
                 href={item.href}
                 className="hover:text-gold transition-colors relative"
-                whileHover={{ transform: "translateY(-2px)" }}
-                initial={{ opacity: 0, transform: "translateY(-20px)" }}
-                animate={{ opacity: 1, transform: "translateY(0px)" }}
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
                 {item.name}
@@ -406,8 +406,8 @@ export default function Sales() {
             {/* Cart Button */}
             <motion.div
               className="relative"
-              whileHover={{ transform: "scale(1.05)" }}
-              whileTap={{ transform: "scale(0.95)" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Button
                 onClick={() => setShowCart(!showCart)}
@@ -425,8 +425,8 @@ export default function Sales() {
             </motion.div>
 
             <motion.div
-              whileHover={{ transform: "scale(1.05)" }}
-              whileTap={{ transform: "scale(0.95)" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Button
                 onClick={handleGetStarted}
@@ -570,8 +570,8 @@ export default function Sales() {
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, transform: "translateY(50px)" }}
-            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-6xl font-bold mb-6">
@@ -587,8 +587,8 @@ export default function Sales() {
           {/* Category Filter */}
           <motion.div
             className="flex justify-center mb-12"
-            initial={{ opacity: 0, transform: "translateY(30px)" }}
-            animate={{ opacity: 1, transform: "translateY(0px)" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
             <div className="flex flex-wrap gap-3">
@@ -601,8 +601,8 @@ export default function Sales() {
                       ? "bg-gold text-gold-foreground border-gold"
                       : "bg-dark-bg border-dark-border text-muted-foreground hover:border-gold hover:text-gold"
                   }`}
-                  whileHover={{ transform: "scale(1.05)" }}
-                  whileTap={{ transform: "scale(0.95)" }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {category.name} ({category.count})
                 </motion.button>
@@ -721,8 +721,8 @@ export default function Sales() {
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"
-            initial={{ opacity: 0, transform: "translateY(30px)" }}
-            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
@@ -769,7 +769,7 @@ export default function Sales() {
               >
                 <motion.div
                   className="inline-flex items-center justify-center w-16 h-16 bg-gold rounded-full mb-6"
-                  whileHover={{ transform: "scale(1.1)" }}
+                  whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <feature.icon className="w-8 h-8 text-gold-foreground" />
@@ -797,7 +797,7 @@ export default function Sales() {
             <motion.div variants={itemVariants}>
               <motion.div
                 className="text-3xl font-bold text-gold mb-6"
-                whileHover={{ transform: "scale(1.05)" }}
+                whileHover={{ scale: 1.05 }}
               >
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F0e9cf1a782aa45bc943722aba5eb5aba?format=webp&width=800"
