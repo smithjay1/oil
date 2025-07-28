@@ -16,6 +16,8 @@ import {
   Award,
   Users,
   TrendingUp,
+  Menu,
+  X,
 } from "lucide-react";
 import {
   motion,
@@ -109,6 +111,7 @@ const FloatingIcon = ({
 export default function Index() {
   const [activeService, setActiveService] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, -100]);
   const y2 = useTransform(scrollY, [0, 1000], [0, -200]);
@@ -154,7 +157,7 @@ export default function Index() {
       >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <motion.div
-            className="text-2xl font-bold text-gold"
+            className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -163,7 +166,12 @@ export default function Index() {
               alt="RV J&C OIL LTD"
               className="h-8"
             />
+            <span className="text-lg md:text-xl font-bold text-gold">
+              RV J&C OIL LTD
+            </span>
           </motion.div>
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {[
               { name: "Home", href: "#home" },
@@ -190,17 +198,57 @@ export default function Index() {
               </motion.a>
             ))}
           </div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-gold text-gold-foreground hover:bg-gold/90 relative overflow-hidden">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                animate={{ x: ["-100%", "100%"] }}
-                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-              />
-              Get Started
-            </Button>
-          </motion.div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden text-gold p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </motion.button>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="md:hidden bg-dark-bg/95 backdrop-blur-sm border-t border-dark-border"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="container mx-auto px-4 py-4 space-y-4">
+                {[
+                  { name: "Home", href: "#home" },
+                  { name: "Services", href: "/services" },
+                  { name: "About", href: "/about" },
+                  { name: "Sales", href: "/sales" },
+                  { name: "Contact", href: "/contact" },
+                ].map((item, index) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    className="block py-2 hover:text-gold transition-colors border-b border-dark-border/50 last:border-0"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* Epic Hero Section */}
@@ -275,21 +323,6 @@ export default function Index() {
                 OIL LTD
               </motion.span>
               <br />
-              <motion.span
-                className="inline-block text-gold"
-                variants={itemVariants}
-              >
-                &
-              </motion.span>{" "}
-              <motion.span
-                className="inline-block text-foreground hover:text-gold transition-colors"
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.1,
-                }}
-              >
-                OIL
-              </motion.span>
               {/* Animated underline */}
               <motion.div
                 className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 bg-gradient-to-r from-transparent via-gold to-transparent"
@@ -335,7 +368,7 @@ export default function Index() {
                 <Button
                   size="lg"
                   className="bg-gold text-gold-foreground hover:bg-gold/90 relative overflow-hidden group px-8 py-4 text-lg"
-                  onClick={handleCTAClick}
+                  onClick={() => (window.location.href = "/services")}
                   disabled={isLoading}
                 >
                   <AnimatePresence mode="wait">
@@ -387,6 +420,7 @@ export default function Index() {
                   size="lg"
                   variant="outline"
                   className="border-gold text-gold hover:bg-gold hover:text-gold-foreground px-8 py-4 text-lg relative overflow-hidden group"
+                  onClick={() => (window.location.href = "/about")}
                 >
                   <span className="relative z-10">Learn More</span>
                   <motion.div

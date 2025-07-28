@@ -8,11 +8,15 @@ import {
   Zap,
   Shield,
   Globe,
+  Menu,
+  X,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import LiquidChrome from "@/components/LiquidChrome";
 
 export default function About() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -43,7 +47,7 @@ export default function About() {
       <nav className="fixed top-0 w-full z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <motion.div
-            className="text-2xl font-bold text-gold"
+            className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -52,7 +56,12 @@ export default function About() {
               alt="RV J&C OIL LTD"
               className="h-8"
             />
+            <span className="text-lg md:text-xl font-bold text-gold">
+              RV J&C OIL LTD
+            </span>
           </motion.div>
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {[
               { name: "Home", href: "/" },
@@ -79,12 +88,57 @@ export default function About() {
               </motion.a>
             ))}
           </div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-gold text-gold-foreground hover:bg-gold/90">
-              Get Started
-            </Button>
-          </motion.div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="md:hidden text-gold p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </motion.button>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              className="md:hidden bg-dark-bg/95 backdrop-blur-sm border-t border-dark-border"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="container mx-auto px-4 py-4 space-y-4">
+                {[
+                  { name: "Home", href: "/" },
+                  { name: "Services", href: "/#services" },
+                  { name: "About", href: "/about" },
+                  { name: "Sales", href: "/sales" },
+                  { name: "Contact", href: "/#contact" },
+                ].map((item, index) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    className="block py-2 hover:text-gold transition-colors border-b border-dark-border/50 last:border-0"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10 }}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* About Hero Section */}
