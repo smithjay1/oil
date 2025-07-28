@@ -43,11 +43,11 @@ export default function Contact() {
   const itemVariants = {
     hidden: {
       opacity: 0,
-      transform: "translateY(20px)",
+      y: 20,
     },
     visible: {
       opacity: 1,
-      transform: "translateY(0px)",
+      y: 0,
       transition: {
         duration: 0.6,
         ease: [0.645, 0.045, 0.355, 1],
