@@ -378,6 +378,7 @@ export default function Index() {
                   size="lg"
                   variant="outline"
                   className="border-gold text-gold hover:bg-gold hover:text-gold-foreground px-8 py-4 text-lg relative overflow-hidden group"
+                  onClick={() => window.location.href = '/about'}
                 >
                   <span className="relative z-10">Learn More</span>
                   <motion.div
