@@ -58,27 +58,28 @@ const useAnimatedCounter = (end: number, duration: number = 2) => {
   return { count, ref };
 };
 
-// Particle component
+// Optimized Particle component with reduced frequency
 const Particle = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
   <motion.div
     className="absolute w-1 h-1 bg-gold rounded-full"
     initial={{ opacity: 0, scale: 0 }}
     animate={{
-      opacity: [0, 1, 0],
-      scale: [0, 1, 0],
-      x: [0, x],
-      y: [0, y],
+      opacity: [0, 0.6, 0],
+      scale: [0, 0.8, 0],
+      x: [0, x * 0.5],
+      y: [0, y * 0.5],
     }}
     transition={{
-      duration: 4,
+      duration: 8,
       delay,
       repeat: Infinity,
-      repeatDelay: 2,
+      repeatDelay: 6,
+      ease: "easeInOut"
     }}
   />
 );
 
-// Floating icons
+// Optimized Floating icons with reduced complexity
 const FloatingIcon = ({
   icon: Icon,
   delay,
@@ -89,22 +90,22 @@ const FloatingIcon = ({
   x: number;
 }) => (
   <motion.div
-    className="absolute text-gold/20"
-    initial={{ opacity: 0, y: 50 }}
+    className="absolute text-gold/10"
+    initial={{ opacity: 0, y: 20 }}
     animate={{
-      opacity: [0, 0.3, 0],
-      y: [-50, -100, -150],
-      x: [0, x],
-      rotate: [0, 180, 0],
+      opacity: [0, 0.15, 0],
+      y: [20, -40, -80],
+      x: [0, x * 0.3],
     }}
     transition={{
-      duration: 8,
+      duration: 12,
       delay,
       repeat: Infinity,
-      repeatDelay: 2,
+      repeatDelay: 8,
+      ease: "linear"
     }}
   >
-    <Icon size={24} />
+    <Icon size={20} />
   </motion.div>
 );
 
@@ -262,39 +263,29 @@ export default function Index() {
           style={{ y: y1, opacity }}
         />
 
-        {/* Animated Grid Background */}
-        <motion.div
-          className="absolute inset-0 opacity-20"
-          animate={{
-            scale: [1, 1.02, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+        {/* Simplified Grid Background - static for better performance */}
+        <div
+          className="absolute inset-0 opacity-10"
           style={{
-            backgroundImage: `linear-gradient(rgba(255, 193, 7, 0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 193, 7, 0.1) 1px, transparent 1px)`,
-            backgroundSize: "50px 50px",
+            backgroundImage: `linear-gradient(rgba(255, 193, 7, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 193, 7, 0.05) 1px, transparent 1px)`,
+            backgroundSize: "60px 60px",
           }}
         />
 
-        {/* Particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* Reduced Particles for better performance */}
+        {[...Array(8)].map((_, i) => (
           <Particle
             key={i}
-            delay={i * 0.1}
-            x={((i % 4) - 2) * 100}
-            y={((Math.floor(i / 4) % 4) - 2) * 100}
+            delay={i * 0.3}
+            x={((i % 3) - 1) * 80}
+            y={((Math.floor(i / 3) % 3) - 1) * 80}
           />
         ))}
 
-        {/* Floating Icons */}
-        <FloatingIcon icon={Zap} delay={0} x={50} />
-        <FloatingIcon icon={Shield} delay={2} x={-30} />
-        <FloatingIcon icon={Globe} delay={4} x={80} />
-        <FloatingIcon icon={Award} delay={6} x={-60} />
+        {/* Reduced Floating Icons */}
+        <FloatingIcon icon={Zap} delay={0} x={30} />
+        <FloatingIcon icon={Shield} delay={4} x={-20} />
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
@@ -336,25 +327,15 @@ export default function Index() {
               className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              <motion.span
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
+              <span className="opacity-80">
                 Revolutionizing
-              </motion.span>{" "}
+              </span>{" "}
               energy solutions with cutting-edge technology and unmatched
               expertise.
               <br />
-              <motion.span
-                className="text-gold font-semibold"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  color: ["#FFC107", "#FFD54F", "#FFC107"],
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
+              <span className="text-gold font-semibold">
                 Where innovation meets excellence.
-              </motion.span>
+              </span>
             </motion.p>
 
             <motion.div
