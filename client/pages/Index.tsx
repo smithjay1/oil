@@ -434,10 +434,10 @@ export default function Index() {
         <div className="absolute inset-0 opacity-30">
           <LiquidChrome
             baseColor={[0.8, 0.6, 0.1]} // Gold oil color
-            speed={0.5}
-            amplitude={0.4}
-            frequencyX={2}
-            frequencyY={2}
+            speed={0.2}
+            amplitude={0.2}
+            frequencyX={1}
+            frequencyY={1}
             interactive={false}
           />
         </div>
@@ -571,15 +571,11 @@ export default function Index() {
 
       {/* Premium Crude Oil Showcase */}
       <section className="py-20 bg-dark-bg relative overflow-hidden">
-        <motion.div
-          className="absolute inset-0 opacity-10"
-          animate={{
-            rotate: [0, 180, 360],
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
+        <div
+          className="absolute inset-0 opacity-5"
           style={{
             background:
-              "linear-gradient(45deg, transparent 0%, rgba(255, 193, 7, 0.1) 50%, transparent 100%)",
+              "linear-gradient(45deg, transparent 0%, rgba(255, 193, 7, 0.05) 50%, transparent 100%)",
           }}
         />
 
@@ -677,36 +673,14 @@ export default function Index() {
                 className="group relative"
               >
                 <Card className="bg-dark-card border-dark-border hover:border-gold transition-all duration-500 overflow-hidden h-full relative">
-                  {/* Floating Animation Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent"
-                    animate={{
-                      y: [0, -10, 0],
-                      scale: [1, 1.02, 1],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      delay: index * 0.5,
-                    }}
-                  />
+                  {/* Static gradient for better performance */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/3 to-transparent" />
 
                   <CardContent className="p-6 relative z-10">
-                    {/* Oil Icon with 3D Float */}
-                    <motion.div
-                      className="text-6xl mb-4 text-center"
-                      animate={{
-                        y: [0, -15, 0],
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 6,
-                        repeat: Infinity,
-                        delay: index * 0.8,
-                      }}
-                    >
+                    {/* Simplified Oil Icon */}
+                    <div className="text-6xl mb-4 text-center">
                       {oil.image}
-                    </motion.div>
+                    </div>
 
                     <motion.h3 className="text-xl font-bold mb-2 text-gold group-hover:text-gold/80 transition-colors">
                       {oil.name}
@@ -777,52 +751,20 @@ export default function Index() {
                 }}
                 className="relative group"
               >
-                {/* Floating icon */}
-                <motion.div
-                  className="text-4xl mb-4"
-                  animate={{
-                    y: [0, -8, 0],
-                    rotate: [0, 5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    delay: index * 0.3,
-                  }}
-                >
+                {/* Simplified icon */}
+                <div className="text-4xl mb-4">
                   {stat.icon}
-                </motion.div>
+                </div>
 
-                <motion.div
-                  className="text-4xl font-bold text-gold mb-2"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.5,
-                  }}
-                >
+                <div className="text-4xl font-bold text-gold mb-2">
                   {stat.number}
-                </motion.div>
+                </div>
                 <div className="text-muted-foreground font-medium">
                   {stat.label}
                 </div>
 
-                {/* 3D shadow effect */}
-                <motion.div
-                  className="absolute -inset-4 bg-gold/5 rounded-lg -z-10"
-                  animate={{
-                    scale: [1, 1.02, 1],
-                    y: [0, 2, 0],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: index * 0.4,
-                  }}
-                />
+                {/* Static shadow effect */}
+                <div className="absolute -inset-4 bg-gold/3 rounded-lg -z-10" />
               </motion.div>
             ))}
           </motion.div>
@@ -981,12 +923,8 @@ export default function Index() {
 
       {/* Enhanced Footer */}
       <footer className="bg-dark-card border-t border-dark-border py-16 relative overflow-hidden">
-        <motion.div
-          className="absolute inset-0 opacity-10"
-          animate={{
-            y: [0, -20, 0],
-          }}
-          transition={{ duration: 15, repeat: Infinity }}
+        <div
+          className="absolute inset-0 opacity-5"
           style={{
             background: "linear-gradient(0deg, #FFC107 0%, transparent 100%)",
           }}
