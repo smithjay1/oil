@@ -95,4 +95,35 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Performance optimizations */
+  .motion-safe {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Optimize backdrop blur for better performance */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* Hardware acceleration for animations */
+  [data-framer-motion] {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Optimize canvas rendering */
+  canvas {
+    transform: translateZ(0);
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  /* Optimize scrolling performance */
+  .overflow-hidden {
+    contain: layout style paint;
+  }
 }
