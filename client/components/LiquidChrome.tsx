@@ -91,27 +91,37 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
       }
     `;
 
-    const geometry = new Triangle(gl);
-    const program = new Program(gl, {
-      vertex: vertexShader,
-      fragment: fragmentShader,
-      uniforms: {
-        uTime: { value: 0 },
-        uResolution: {
-          value: new Float32Array([
-            gl.canvas.width,
-            gl.canvas.height,
-            gl.canvas.width / gl.canvas.height,
-          ]),
+    // Create geometry and program with proper error handling
+    let geometry, program, mesh;
+
+    try {
+      geometry = new Triangle(gl);
+
+      program = new Program(gl, {
+        vertex: vertexShader,
+        fragment: fragmentShader,
+        uniforms: {
+          uTime: { value: 0 },
+          uResolution: {
+            value: new Float32Array([
+              gl.canvas.width,
+              gl.canvas.height,
+              gl.canvas.width / gl.canvas.height,
+            ]),
+          },
+          uBaseColor: { value: new Float32Array(baseColor) },
+          uAmplitude: { value: amplitude },
+          uFrequencyX: { value: frequencyX },
+          uFrequencyY: { value: frequencyY },
+          uMouse: { value: new Float32Array([0, 0]) },
         },
-        uBaseColor: { value: new Float32Array(baseColor) },
-        uAmplitude: { value: amplitude },
-        uFrequencyX: { value: frequencyX },
-        uFrequencyY: { value: frequencyY },
-        uMouse: { value: new Float32Array([0, 0]) },
-      },
-    });
-    const mesh = new Mesh(gl, { geometry, program });
+      });
+
+      mesh = new Mesh(gl, { geometry, program });
+    } catch (error) {
+      console.error('Failed to initialize LiquidChrome:', error);
+      return;
+    }
 
     function resize() {
       // Balanced resolution for performance and quality
