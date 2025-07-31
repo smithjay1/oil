@@ -95,7 +95,25 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
     let geometry, program, mesh;
 
     try {
-      geometry = new Triangle(gl);
+      // Create manual geometry to ensure proper attributes
+      geometry = new Geometry(gl, {
+        position: {
+          size: 2,
+          data: new Float32Array([
+            -1, -1,
+            3, -1,
+            -1, 3
+          ])
+        },
+        uv: {
+          size: 2,
+          data: new Float32Array([
+            0, 0,
+            2, 0,
+            0, 2
+          ])
+        }
+      });
 
       program = new Program(gl, {
         vertex: vertexShader,
