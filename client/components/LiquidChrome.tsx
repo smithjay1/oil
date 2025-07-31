@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { Renderer, Program, Mesh, Triangle } from "ogl";
+import { Renderer, Program, Mesh, Geometry } from "ogl";
 
 import './LiquidChrome.css';
 
