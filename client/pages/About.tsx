@@ -773,27 +773,29 @@ export default function About() {
             <h2 className="text-5xl font-bold text-center mb-12">
               Company <span className="text-gold">Documentation</span>
             </h2>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "2025 april safety report",
-                  bg: "bg-dark-bg border border-gold text-gold",
-                },
-                { title: "Company Brochure", bg: "bg-gold text-dark-bg" },
-                {
-                  title: "Financial Information",
-                  bg: "bg-dark-bg border border-gold text-gold",
-                },
-              ].map((doc, index) => (
-                <motion.div
-                  key={index}
-                  className={`p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 ${doc.bg}`}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="text-lg font-semibold mb-2">{doc.title}</div>
-                  <div className="text-sm">Download</div>
-                </motion.div>
-              ))}
+            <div className="flex justify-center">
+              <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
+                {[
+                  {
+                    title: "2025 april safety report",
+                    bg: "bg-dark-bg border border-gold text-gold",
+                  },
+                  { title: "Company Brochure", bg: "bg-gold text-dark-bg" },
+                  {
+                    title: "Financial Information",
+                    bg: "bg-dark-bg border border-gold text-gold",
+                  },
+                ].map((doc, index) => (
+                  <motion.div
+                    key={index}
+                    className={`p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 ${doc.bg}`}
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="text-lg font-semibold mb-2">{doc.title}</div>
+                    <div className="text-sm">Download</div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
