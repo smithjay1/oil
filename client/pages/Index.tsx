@@ -58,7 +58,7 @@ const useAnimatedCounter = (end: number, duration: number = 2) => {
   return { count, ref };
 };
 
-// GPU-accelerated Particle component
+// Particle component
 const Particle = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
   <motion.div
     className="absolute w-1 h-1 bg-gold rounded-full"
@@ -74,13 +74,11 @@ const Particle = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
       delay,
       repeat: Infinity,
       repeatDelay: 2,
-      ease: "easeInOut"
     }}
-    style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
   />
 );
 
-// GPU-accelerated Floating icons
+// Floating icons
 const FloatingIcon = ({
   icon: Icon,
   delay,
@@ -104,9 +102,7 @@ const FloatingIcon = ({
       delay,
       repeat: Infinity,
       repeatDelay: 2,
-      ease: "linear"
     }}
-    style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
   >
     <Icon size={24} />
   </motion.div>
@@ -266,7 +262,7 @@ export default function Index() {
           style={{ y: y1, opacity }}
         />
 
-        {/* GPU-accelerated Grid Background */}
+        {/* Animated Grid Background */}
         <motion.div
           className="absolute inset-0 opacity-20"
           animate={{
@@ -281,12 +277,10 @@ export default function Index() {
             backgroundImage: `linear-gradient(rgba(255, 193, 7, 0.1) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 193, 7, 0.1) 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
-            willChange: 'transform',
-            transform: 'translateZ(0)'
           }}
         />
 
-        {/* Full Particles with GPU acceleration */}
+        {/* Particles */}
         {[...Array(20)].map((_, i) => (
           <Particle
             key={i}
@@ -296,7 +290,7 @@ export default function Index() {
           />
         ))}
 
-        {/* Full Floating Icons with GPU acceleration */}
+        {/* Floating Icons */}
         <FloatingIcon icon={Zap} delay={0} x={50} />
         <FloatingIcon icon={Shield} delay={2} x={-30} />
         <FloatingIcon icon={Globe} delay={4} x={80} />
@@ -345,7 +339,6 @@ export default function Index() {
               <motion.span
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                style={{ willChange: 'opacity' }}
               >
                 Revolutionizing
               </motion.span>{" "}
@@ -359,7 +352,6 @@ export default function Index() {
                   color: ["#FFC107", "#FFD54F", "#FFC107"],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
-                style={{ willChange: 'transform, color' }}
               >
                 Where innovation meets excellence.
               </motion.span>
@@ -458,7 +450,7 @@ export default function Index() {
         id="services"
         className="py-20 bg-dark-card relative overflow-hidden"
       >
-        <div className="absolute inset-0 opacity-30" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
+        <div className="absolute inset-0 opacity-30">
           <LiquidChrome
             baseColor={[0.8, 0.6, 0.1]} // Gold oil color
             speed={0.5}
@@ -607,8 +599,6 @@ export default function Index() {
           style={{
             background:
               "linear-gradient(45deg, transparent 0%, rgba(255, 193, 7, 0.1) 50%, transparent 100%)",
-            willChange: 'transform',
-            transform: 'translateZ(0)'
           }}
         />
 
@@ -706,7 +696,7 @@ export default function Index() {
                 className="group relative"
               >
                 <Card className="bg-dark-card border-dark-border hover:border-gold transition-all duration-500 overflow-hidden h-full relative">
-                  {/* GPU-accelerated Floating Animation Effect */}
+                  {/* Floating Animation Effect */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent"
                     animate={{
@@ -718,11 +708,10 @@ export default function Index() {
                       repeat: Infinity,
                       delay: index * 0.5,
                     }}
-                    style={{ willChange: 'transform' }}
                   />
 
                   <CardContent className="p-6 relative z-10">
-                    {/* GPU-accelerated Oil Icon with 3D Float */}
+                    {/* Oil Icon with 3D Float */}
                     <motion.div
                       className="text-6xl mb-4 text-center"
                       animate={{
@@ -734,7 +723,6 @@ export default function Index() {
                         repeat: Infinity,
                         delay: index * 0.8,
                       }}
-                      style={{ willChange: 'transform' }}
                     >
                       {oil.image}
                     </motion.div>
@@ -808,7 +796,7 @@ export default function Index() {
                 }}
                 className="relative group"
               >
-                {/* GPU-accelerated floating icon */}
+                {/* Floating icon */}
                 <motion.div
                   className="text-4xl mb-4"
                   animate={{
@@ -820,7 +808,6 @@ export default function Index() {
                     repeat: Infinity,
                     delay: index * 0.3,
                   }}
-                  style={{ willChange: 'transform' }}
                 >
                   {stat.icon}
                 </motion.div>
@@ -835,7 +822,6 @@ export default function Index() {
                     repeat: Infinity,
                     delay: index * 0.5,
                   }}
-                  style={{ willChange: 'transform' }}
                 >
                   {stat.number}
                 </motion.div>
@@ -843,7 +829,7 @@ export default function Index() {
                   {stat.label}
                 </div>
 
-                {/* GPU-accelerated 3D shadow effect */}
+                {/* 3D shadow effect */}
                 <motion.div
                   className="absolute -inset-4 bg-gold/5 rounded-lg -z-10"
                   animate={{
@@ -855,7 +841,6 @@ export default function Index() {
                     repeat: Infinity,
                     delay: index * 0.4,
                   }}
-                  style={{ willChange: 'transform' }}
                 />
               </motion.div>
             ))}
@@ -1023,8 +1008,6 @@ export default function Index() {
           transition={{ duration: 15, repeat: Infinity }}
           style={{
             background: "linear-gradient(0deg, #FFC107 0%, transparent 100%)",
-            willChange: 'transform',
-            transform: 'translateZ(0)'
           }}
         />
 

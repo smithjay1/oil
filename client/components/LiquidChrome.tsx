@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { Renderer, Program, Mesh, Geometry } from "ogl";
+import { Renderer, Program, Mesh, Triangle } from "ogl";
 
 import './LiquidChrome.css';
 
@@ -58,18 +58,16 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
           vec2 fragCoord = uvCoord * uResolution.xy;
           vec2 uv = (2.0 * fragCoord - uResolution.xy) / min(uResolution.x, uResolution.y);
 
-          // Optimized iterations with better performance
-          for (float i = 1.0; i < 8.0; i++){
+          for (float i = 1.0; i < 10.0; i++){
               uv.x += uAmplitude / i * cos(i * uFrequencyX * uv.y + uTime + uMouse.x * 3.14159);
               uv.y += uAmplitude / i * cos(i * uFrequencyY * uv.x + uTime + uMouse.y * 3.14159);
           }
 
-          // Optimized ripple effect
           vec2 diff = (uvCoord - uMouse);
           float dist = length(diff);
-          float falloff = exp(-dist * 15.0);
-          float ripple = sin(8.0 * dist - uTime * 1.5) * 0.025;
-          uv += (diff / (dist + 0.001)) * ripple * falloff;
+          float falloff = exp(-dist * 20.0);
+          float ripple = sin(10.0 * dist - uTime * 2.0) * 0.03;
+          uv += (diff / (dist + 0.0001)) * ripple * falloff;
 
           vec3 color = uBaseColor / abs(sin(uTime - uv.y - uv.x));
           return vec4(color, 1.0);
@@ -77,73 +75,42 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
 
       void main() {
           vec4 col = vec4(0.0);
-          // Optimized multi-sampling with fewer samples
-      vec4 col = vec4(0.0);
-      int samples = 0;
-      for (int i = -1; i <= 1; i += 2){
-          for (int j = -1; j <= 1; j += 2){
-              vec2 offset = vec2(float(i), float(j)) * (0.5 / min(uResolution.x, uResolution.y));
-              col += renderImage(vUv + offset);
-              samples++;
+          int samples = 0;
+          for (int i = -1; i <= 1; i++){
+              for (int j = -1; j <= 1; j++){
+                  vec2 offset = vec2(float(i), float(j)) * (1.0 / min(uResolution.x, uResolution.y));
+                  col += renderImage(vUv + offset);
+                  samples++;
+              }
           }
-      }
-      gl_FragColor = col / float(samples);
+          gl_FragColor = col / float(samples);
       }
     `;
 
-    // Create geometry and program with proper error handling
-    let geometry, program, mesh;
-
-    try {
-      // Create manual geometry to ensure proper attributes
-      geometry = new Geometry(gl, {
-        position: {
-          size: 2,
-          data: new Float32Array([
-            -1, -1,
-            3, -1,
-            -1, 3
-          ])
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
+      vertex: vertexShader,
+      fragment: fragmentShader,
+      uniforms: {
+        uTime: { value: 0 },
+        uResolution: {
+          value: new Float32Array([
+            gl.canvas.width,
+            gl.canvas.height,
+            gl.canvas.width / gl.canvas.height,
+          ]),
         },
-        uv: {
-          size: 2,
-          data: new Float32Array([
-            0, 0,
-            2, 0,
-            0, 2
-          ])
-        }
-      });
-
-      program = new Program(gl, {
-        vertex: vertexShader,
-        fragment: fragmentShader,
-        uniforms: {
-          uTime: { value: 0 },
-          uResolution: {
-            value: new Float32Array([
-              gl.canvas.width,
-              gl.canvas.height,
-              gl.canvas.width / gl.canvas.height,
-            ]),
-          },
-          uBaseColor: { value: new Float32Array(baseColor) },
-          uAmplitude: { value: amplitude },
-          uFrequencyX: { value: frequencyX },
-          uFrequencyY: { value: frequencyY },
-          uMouse: { value: new Float32Array([0, 0]) },
-        },
-      });
-
-      mesh = new Mesh(gl, { geometry, program });
-    } catch (error) {
-      console.error('Failed to initialize LiquidChrome:', error);
-      return;
-    }
+        uBaseColor: { value: new Float32Array(baseColor) },
+        uAmplitude: { value: amplitude },
+        uFrequencyX: { value: frequencyX },
+        uFrequencyY: { value: frequencyY },
+        uMouse: { value: new Float32Array([0, 0]) },
+      },
+    });
+    const mesh = new Mesh(gl, { geometry, program });
 
     function resize() {
-      // Balanced resolution for performance and quality
-      const scale = window.devicePixelRatio > 1 ? 0.8 : 1;
+      const scale = 1;
       renderer.setSize(
         container.offsetWidth * scale,
         container.offsetHeight * scale
@@ -185,15 +152,10 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
     let animationId;
     function update(t) {
       animationId = requestAnimationFrame(update);
-      if (program?.uniforms?.uTime && mesh) {
-        program.uniforms.uTime.value = t * 0.001 * speed;
-        renderer.render({ scene: mesh });
-      }
+      program.uniforms.uTime.value = t * 0.001 * speed;
+      renderer.render({ scene: mesh });
     }
-
-    if (mesh && program) {
-      animationId = requestAnimationFrame(update);
-    }
+    animationId = requestAnimationFrame(update);
 
     container.appendChild(gl.canvas);
 
