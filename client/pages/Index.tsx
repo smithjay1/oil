@@ -458,13 +458,13 @@ export default function Index() {
         id="services"
         className="py-20 bg-dark-card relative overflow-hidden"
       >
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-30" style={{ willChange: 'transform', transform: 'translateZ(0)' }}>
           <LiquidChrome
             baseColor={[0.8, 0.6, 0.1]} // Gold oil color
-            speed={0.2}
-            amplitude={0.2}
-            frequencyX={1}
-            frequencyY={1}
+            speed={0.5}
+            amplitude={0.4}
+            frequencyX={2}
+            frequencyY={2}
             interactive={false}
           />
         </div>
@@ -598,11 +598,17 @@ export default function Index() {
 
       {/* Premium Crude Oil Showcase */}
       <section className="py-20 bg-dark-bg relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          animate={{
+            rotate: [0, 180, 360],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
           style={{
             background:
-              "linear-gradient(45deg, transparent 0%, rgba(255, 193, 7, 0.05) 50%, transparent 100%)",
+              "linear-gradient(45deg, transparent 0%, rgba(255, 193, 7, 0.1) 50%, transparent 100%)",
+            willChange: 'transform',
+            transform: 'translateZ(0)'
           }}
         />
 
@@ -1009,10 +1015,16 @@ export default function Index() {
 
       {/* Enhanced Footer */}
       <footer className="bg-dark-card border-t border-dark-border py-16 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
+        <motion.div
+          className="absolute inset-0 opacity-10"
+          animate={{
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
           style={{
             background: "linear-gradient(0deg, #FFC107 0%, transparent 100%)",
+            willChange: 'transform',
+            transform: 'translateZ(0)'
           }}
         />
 
