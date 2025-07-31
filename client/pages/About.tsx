@@ -324,9 +324,9 @@ export default function About() {
                       style={{ fontFamily: "Courier New, monospace" }}
                     >
                       {[
-                        "• 6 Continents",
-                        "• 25+ Countries",
-                        "• 50M+ Barrels Daily",
+                        "• 2 Continents",
+                        "• 5+ Countries",
+                        "• 20+ Barrels Daily",
                         "• 24/7 Operations",
                       ].map((item, index) => (
                         <motion.li
@@ -705,9 +705,9 @@ export default function About() {
             </h2>
             <div className="grid md:grid-cols-3 gap-8 text-center">
               {[
-                { icon: "👥", number: "25,000+", label: "Global Employees" },
-                { icon: "🏭", number: "49,000", label: "Metric Tons Daily" },
-                { icon: "🌍", number: "25+", label: "Countries Served" },
+                { icon: "👥", number: "20+", label: "Global Employees" },
+                { icon: "🏭", number: "20,000", label: "Metric Tons Daily" },
+                { icon: "🌍", number: "5+", label: "Countries Served" },
               ].map((fact, index) => (
                 <motion.div
                   key={index}
@@ -775,9 +775,8 @@ export default function About() {
             </h2>
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { title: "2023 Annual Report", bg: "bg-gold text-dark-bg" },
                 {
-                  title: "2023 Safety Report",
+                  title: "2025 april safety report",
                   bg: "bg-dark-bg border border-gold text-gold",
                 },
                 { title: "Company Brochure", bg: "bg-gold text-dark-bg" },
