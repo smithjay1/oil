@@ -266,13 +266,23 @@ export default function Index() {
           style={{ y: y1, opacity }}
         />
 
-        {/* Simplified Grid Background - static for better performance */}
-        <div
-          className="absolute inset-0 opacity-10"
+        {/* GPU-accelerated Grid Background */}
+        <motion.div
+          className="absolute inset-0 opacity-20"
+          animate={{
+            scale: [1, 1.02, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
           style={{
-            backgroundImage: `linear-gradient(rgba(255, 193, 7, 0.05) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 193, 7, 0.05) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
+            backgroundImage: `linear-gradient(rgba(255, 193, 7, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 193, 7, 0.1) 1px, transparent 1px)`,
+            backgroundSize: "50px 50px",
+            willChange: 'transform',
+            transform: 'translateZ(0)'
           }}
         />
 
@@ -332,15 +342,27 @@ export default function Index() {
               className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto"
               variants={itemVariants}
             >
-              <span className="opacity-80">
+              <motion.span
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ willChange: 'opacity' }}
+              >
                 Revolutionizing
-              </span>{" "}
+              </motion.span>{" "}
               energy solutions with cutting-edge technology and unmatched
               expertise.
               <br />
-              <span className="text-gold font-semibold">
+              <motion.span
+                className="text-gold font-semibold"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  color: ["#FFC107", "#FFD54F", "#FFC107"],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                style={{ willChange: 'transform, color' }}
+              >
                 Where innovation meets excellence.
-              </span>
+              </motion.span>
             </motion.p>
 
             <motion.div
