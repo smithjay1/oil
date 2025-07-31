@@ -324,9 +324,9 @@ export default function About() {
                       style={{ fontFamily: "Courier New, monospace" }}
                     >
                       {[
-                        "• 6 Continents",
-                        "• 25+ Countries",
-                        "• 50M+ Barrels Daily",
+                        "• 2 Continents",
+                        "• 5+ Countries",
+                        "• 20+ Barrels Daily",
                         "• 24/7 Operations",
                       ].map((item, index) => (
                         <motion.li
@@ -705,9 +705,9 @@ export default function About() {
             </h2>
             <div className="grid md:grid-cols-3 gap-8 text-center">
               {[
-                { icon: "👥", number: "25,000+", label: "Global Employees" },
-                { icon: "🏭", number: "49,000", label: "Metric Tons Daily" },
-                { icon: "🌍", number: "25+", label: "Countries Served" },
+                { icon: "👥", number: "20+", label: "Global Employees" },
+                { icon: "🏭", number: "20,000", label: "Metric Tons Daily" },
+                { icon: "🌍", number: "5+", label: "Countries Served" },
               ].map((fact, index) => (
                 <motion.div
                   key={index}
@@ -773,28 +773,55 @@ export default function About() {
             <h2 className="text-5xl font-bold text-center mb-12">
               Company <span className="text-gold">Documentation</span>
             </h2>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { title: "2023 Annual Report", bg: "bg-gold text-dark-bg" },
-                {
-                  title: "2023 Safety Report",
-                  bg: "bg-dark-bg border border-gold text-gold",
-                },
-                { title: "Company Brochure", bg: "bg-gold text-dark-bg" },
-                {
-                  title: "Financial Information",
-                  bg: "bg-dark-bg border border-gold text-gold",
-                },
-              ].map((doc, index) => (
+            <div className="flex justify-center">
+              <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                 <motion.div
-                  key={index}
-                  className={`p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 ${doc.bg}`}
+                  className="p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 bg-gold text-dark-bg"
                   whileHover={{ y: -5 }}
                 >
-                  <div className="text-lg font-semibold mb-2">{doc.title}</div>
-                  <div className="text-sm">Download</div>
+                  <div className="text-lg font-semibold mb-2">
+                    Company Brochure
+                  </div>
+                  <div className="text-sm">
+                    <a href="https://rvjc.co.uk/reports/1.pdf" download>
+                      Download Brochure
+                    </a>
+                  </div>
                 </motion.div>
-              ))}
+                {[
+                  {
+                    title: "Financial Information",
+                    bg: "bg-dark-bg border border-gold text-gold",
+                  },
+                ].map((doc, index) => (
+                  <motion.div
+                    key={index}
+                    className={`p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 ${doc.bg}`}
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className="text-lg font-semibold mb-2">
+                      {doc.title}
+                    </div>
+                    <div className="text-sm">Download</div>
+                  </motion.div>
+                ))}
+                <motion.div
+                  className="p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 bg-dark-bg border border-gold text-gold"
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="text-lg font-semibold mb-2">
+                    2025 april safety report
+                  </div>
+                  <div className="text-sm">
+                    <a
+                      href="https://rvjc.co.uk/reports/2025-april-safety-report.pdf"
+                      download
+                    >
+                      Download Safety Report
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>

@@ -59,10 +59,8 @@ export default function Contact() {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
+    // FormSubmit will handle the submission
     console.log("Form submitted:", formData);
-    // You can add actual form submission logic here
   };
 
   const handleInputChange = (
@@ -306,7 +304,11 @@ export default function Contact() {
                 </p>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form
+                  action="https://formsubmit.co/info@rvjc.co.uk"
+                  method="POST"
+                  className="space-y-6"
+                >
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium text-gold mb-2 block">
@@ -314,8 +316,6 @@ export default function Contact() {
                       </label>
                       <Input
                         name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
                         placeholder="Your full name"
                         required
                         className="bg-dark-bg border-dark-border focus:border-gold"
@@ -328,8 +328,6 @@ export default function Contact() {
                       <Input
                         name="email"
                         type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
                         placeholder="your.email@example.com"
                         required
                         className="bg-dark-bg border-dark-border focus:border-gold"
@@ -345,9 +343,8 @@ export default function Contact() {
                       <Input
                         name="phone"
                         type="tel"
-                        value={formData.phone}
-                        onChange={handleInputChange}
                         placeholder="(555) 123-4567"
+                        required
                         className="bg-dark-bg border-dark-border focus:border-gold"
                       />
                     </div>
@@ -376,9 +373,7 @@ export default function Contact() {
                     </label>
                     <Textarea
                       name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Tell us about your petroleum oil needs, project details, or any questions you have..."
+                      placeholder="What do you need?"
                       rows={5}
                       required
                       className="bg-dark-bg border-dark-border focus:border-gold resize-none"

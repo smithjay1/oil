@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Renderer, Program, Mesh, Triangle } from "ogl";
 
-import './LiquidChrome.css';
+import "./LiquidChrome.css";
 
 interface LiquidChromeProps {
   baseColor?: [number, number, number];
@@ -113,7 +113,7 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
       const scale = 1;
       renderer.setSize(
         container.offsetWidth * scale,
-        container.offsetHeight * scale
+        container.offsetHeight * scale,
       );
       const resUniform = program.uniforms.uResolution.value;
       resUniform[0] = gl.canvas.width;
@@ -174,11 +174,7 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
   }, [baseColor, speed, amplitude, frequencyX, frequencyY, interactive]);
 
   return (
-    <div
-      ref={containerRef}
-      className="liquidChrome-container"
-      {...props}
-    />
+    <div ref={containerRef} className="liquidChrome-container" {...props} />
   );
 };
 
