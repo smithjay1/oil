@@ -776,12 +776,6 @@ export default function About() {
             <div className="flex justify-center">
               <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
                 {[
-                  {
-                    title: "2025 april safety report",
-                    bg: "bg-dark-bg border border-gold text-gold",
-                    url: "https://cdn.builder.io/o/assets%2Fcdf7b030fec349e498124f4ef8b7abf7%2F99bd6a3b015242ad8b9f03b11c30450b?alt=media&token=21d9a07c-a528-4cd0-b000-2e3270c1d1db&apiKey=cdf7b030fec349e498124f4ef8b7abf7",
-                    downloadName: "RVJ&C_Oil_Safety_Report_April_2025.pdf"
-                  },
                   { title: "Company Brochure", bg: "bg-gold text-dark-bg" },
                   {
                     title: "Financial Information",
@@ -792,22 +786,20 @@ export default function About() {
                     key={index}
                     className={`p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 ${doc.bg}`}
                     whileHover={{ y: -5 }}
-                    onClick={() => {
-                      if (doc.url) {
-                        const link = document.createElement('a');
-                        link.href = doc.url;
-                        link.download = doc.downloadName || doc.title;
-                        link.target = '_blank';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                      }
-                    }}
                   >
                     <div className="text-lg font-semibold mb-2">{doc.title}</div>
                     <div className="text-sm">Download</div>
                   </motion.div>
                 ))}
+                <motion.div
+                  className="p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 bg-dark-bg border border-gold text-gold"
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="text-lg font-semibold mb-2">2025 april safety report</div>
+                  <div className="text-sm">
+                    <a href="https://rvjc.co.uk/reports/2025-april-safety-report.pdf" download>Download Safety Report</a>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
