@@ -700,14 +700,38 @@ export default function Index() {
                 className="group relative"
               >
                 <Card className="bg-dark-card border-dark-border hover:border-gold transition-all duration-500 overflow-hidden h-full relative">
-                  {/* Static gradient for better performance */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold/3 to-transparent" />
+                  {/* GPU-accelerated Floating Animation Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent"
+                    animate={{
+                      y: [0, -10, 0],
+                      scale: [1, 1.02, 1],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      delay: index * 0.5,
+                    }}
+                    style={{ willChange: 'transform' }}
+                  />
 
                   <CardContent className="p-6 relative z-10">
-                    {/* Simplified Oil Icon */}
-                    <div className="text-6xl mb-4 text-center">
+                    {/* GPU-accelerated Oil Icon with 3D Float */}
+                    <motion.div
+                      className="text-6xl mb-4 text-center"
+                      animate={{
+                        y: [0, -15, 0],
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        delay: index * 0.8,
+                      }}
+                      style={{ willChange: 'transform' }}
+                    >
                       {oil.image}
-                    </div>
+                    </motion.div>
 
                     <motion.h3 className="text-xl font-bold mb-2 text-gold group-hover:text-gold/80 transition-colors">
                       {oil.name}
@@ -778,20 +802,55 @@ export default function Index() {
                 }}
                 className="relative group"
               >
-                {/* Simplified icon */}
-                <div className="text-4xl mb-4">
+                {/* GPU-accelerated floating icon */}
+                <motion.div
+                  className="text-4xl mb-4"
+                  animate={{
+                    y: [0, -8, 0],
+                    rotate: [0, 5, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: index * 0.3,
+                  }}
+                  style={{ willChange: 'transform' }}
+                >
                   {stat.icon}
-                </div>
+                </motion.div>
 
-                <div className="text-4xl font-bold text-gold mb-2">
+                <motion.div
+                  className="text-4xl font-bold text-gold mb-2"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: index * 0.5,
+                  }}
+                  style={{ willChange: 'transform' }}
+                >
                   {stat.number}
-                </div>
+                </motion.div>
                 <div className="text-muted-foreground font-medium">
                   {stat.label}
                 </div>
 
-                {/* Static shadow effect */}
-                <div className="absolute -inset-4 bg-gold/3 rounded-lg -z-10" />
+                {/* GPU-accelerated 3D shadow effect */}
+                <motion.div
+                  className="absolute -inset-4 bg-gold/5 rounded-lg -z-10"
+                  animate={{
+                    scale: [1, 1.02, 1],
+                    y: [0, 2, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: index * 0.4,
+                  }}
+                  style={{ willChange: 'transform' }}
+                />
               </motion.div>
             ))}
           </motion.div>
