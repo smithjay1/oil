@@ -58,28 +58,29 @@ const useAnimatedCounter = (end: number, duration: number = 2) => {
   return { count, ref };
 };
 
-// Optimized Particle component with reduced frequency
+// GPU-accelerated Particle component
 const Particle = ({ delay, x, y }: { delay: number; x: number; y: number }) => (
   <motion.div
     className="absolute w-1 h-1 bg-gold rounded-full"
     initial={{ opacity: 0, scale: 0 }}
     animate={{
-      opacity: [0, 0.6, 0],
-      scale: [0, 0.8, 0],
-      x: [0, x * 0.5],
-      y: [0, y * 0.5],
+      opacity: [0, 1, 0],
+      scale: [0, 1, 0],
+      x: [0, x],
+      y: [0, y],
     }}
     transition={{
-      duration: 8,
+      duration: 4,
       delay,
       repeat: Infinity,
-      repeatDelay: 6,
+      repeatDelay: 2,
       ease: "easeInOut"
     }}
+    style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
   />
 );
 
-// Optimized Floating icons with reduced complexity
+// GPU-accelerated Floating icons
 const FloatingIcon = ({
   icon: Icon,
   delay,
@@ -90,22 +91,24 @@ const FloatingIcon = ({
   x: number;
 }) => (
   <motion.div
-    className="absolute text-gold/10"
-    initial={{ opacity: 0, y: 20 }}
+    className="absolute text-gold/20"
+    initial={{ opacity: 0, y: 50 }}
     animate={{
-      opacity: [0, 0.15, 0],
-      y: [20, -40, -80],
-      x: [0, x * 0.3],
+      opacity: [0, 0.3, 0],
+      y: [-50, -100, -150],
+      x: [0, x],
+      rotate: [0, 180, 0],
     }}
     transition={{
-      duration: 12,
+      duration: 8,
       delay,
       repeat: Infinity,
-      repeatDelay: 8,
+      repeatDelay: 2,
       ease: "linear"
     }}
+    style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
   >
-    <Icon size={20} />
+    <Icon size={24} />
   </motion.div>
 );
 
@@ -273,19 +276,21 @@ export default function Index() {
           }}
         />
 
-        {/* Reduced Particles for better performance */}
-        {[...Array(8)].map((_, i) => (
+        {/* Full Particles with GPU acceleration */}
+        {[...Array(20)].map((_, i) => (
           <Particle
             key={i}
-            delay={i * 0.3}
-            x={((i % 3) - 1) * 80}
-            y={((Math.floor(i / 3) % 3) - 1) * 80}
+            delay={i * 0.1}
+            x={((i % 4) - 2) * 100}
+            y={((Math.floor(i / 4) % 4) - 2) * 100}
           />
         ))}
 
-        {/* Reduced Floating Icons */}
-        <FloatingIcon icon={Zap} delay={0} x={30} />
-        <FloatingIcon icon={Shield} delay={4} x={-20} />
+        {/* Full Floating Icons with GPU acceleration */}
+        <FloatingIcon icon={Zap} delay={0} x={50} />
+        <FloatingIcon icon={Shield} delay={2} x={-30} />
+        <FloatingIcon icon={Globe} delay={4} x={80} />
+        <FloatingIcon icon={Award} delay={6} x={-60} />
 
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
