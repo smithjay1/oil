@@ -304,7 +304,11 @@ export default function Contact() {
                 </p>
               </CardHeader>
               <CardContent>
-                <form action="https://formsubmit.co/info@rvjc.co.uk" method="POST" className="space-y-6">
+                <form
+                  action="https://formsubmit.co/info@rvjc.co.uk"
+                  method="POST"
+                  className="space-y-6"
+                >
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="text-sm font-medium text-gold mb-2 block">

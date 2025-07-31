@@ -779,9 +779,13 @@ export default function About() {
                   className="p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 bg-gold text-dark-bg"
                   whileHover={{ y: -5 }}
                 >
-                  <div className="text-lg font-semibold mb-2">Company Brochure</div>
+                  <div className="text-lg font-semibold mb-2">
+                    Company Brochure
+                  </div>
                   <div className="text-sm">
-                    <a href="https://rvjc.co.uk/reports/1.pdf" download>Download Brochure</a>
+                    <a href="https://rvjc.co.uk/reports/1.pdf" download>
+                      Download Brochure
+                    </a>
                   </div>
                 </motion.div>
                 {[
@@ -795,7 +799,9 @@ export default function About() {
                     className={`p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 ${doc.bg}`}
                     whileHover={{ y: -5 }}
                   >
-                    <div className="text-lg font-semibold mb-2">{doc.title}</div>
+                    <div className="text-lg font-semibold mb-2">
+                      {doc.title}
+                    </div>
                     <div className="text-sm">Download</div>
                   </motion.div>
                 ))}
@@ -803,9 +809,16 @@ export default function About() {
                   className="p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 bg-dark-bg border border-gold text-gold"
                   whileHover={{ y: -5 }}
                 >
-                  <div className="text-lg font-semibold mb-2">2025 april safety report</div>
+                  <div className="text-lg font-semibold mb-2">
+                    2025 april safety report
+                  </div>
                   <div className="text-sm">
-                    <a href="https://rvjc.co.uk/reports/2025-april-safety-report.pdf" download>Download Safety Report</a>
+                    <a
+                      href="https://rvjc.co.uk/reports/2025-april-safety-report.pdf"
+                      download
+                    >
+                      Download Safety Report
+                    </a>
                   </div>
                 </motion.div>
               </div>
