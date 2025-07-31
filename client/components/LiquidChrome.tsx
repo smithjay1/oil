@@ -58,20 +58,18 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
           vec2 fragCoord = uvCoord * uResolution.xy;
           vec2 uv = (2.0 * fragCoord - uResolution.xy) / min(uResolution.x, uResolution.y);
 
-          // Reduced iterations for better performance
-          for (float i = 1.0; i < 6.0; i++){
-              uv.x += uAmplitude / i * cos(i * uFrequencyX * uv.y + uTime);
-              uv.y += uAmplitude / i * cos(i * uFrequencyY * uv.x + uTime);
+          // Optimized iterations with better performance
+          for (float i = 1.0; i < 8.0; i++){
+              uv.x += uAmplitude / i * cos(i * uFrequencyX * uv.y + uTime + uMouse.x * 3.14159);
+              uv.y += uAmplitude / i * cos(i * uFrequencyY * uv.x + uTime + uMouse.y * 3.14159);
           }
 
-          // Simplified ripple effect
-          if (uMouse.x > 0.0 || uMouse.y > 0.0) {
-              vec2 diff = (uvCoord - uMouse);
-              float dist = length(diff);
-              float falloff = exp(-dist * 10.0);
-              float ripple = sin(5.0 * dist - uTime) * 0.02;
-              uv += (diff / (dist + 0.01)) * ripple * falloff;
-          }
+          // Optimized ripple effect
+          vec2 diff = (uvCoord - uMouse);
+          float dist = length(diff);
+          float falloff = exp(-dist * 15.0);
+          float ripple = sin(8.0 * dist - uTime * 1.5) * 0.025;
+          uv += (diff / (dist + 0.001)) * ripple * falloff;
 
           vec3 color = uBaseColor / abs(sin(uTime - uv.y - uv.x));
           return vec4(color, 1.0);
@@ -79,8 +77,17 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
 
       void main() {
           vec4 col = vec4(0.0);
-          // Simplified rendering without anti-aliasing for better performance
-      gl_FragColor = renderImage(vUv);
+          // Optimized multi-sampling with fewer samples
+      vec4 col = vec4(0.0);
+      int samples = 0;
+      for (int i = -1; i <= 1; i += 2){
+          for (int j = -1; j <= 1; j += 2){
+              vec2 offset = vec2(float(i), float(j)) * (0.5 / min(uResolution.x, uResolution.y));
+              col += renderImage(vUv + offset);
+              samples++;
+          }
+      }
+      gl_FragColor = col / float(samples);
       }
     `;
 
@@ -107,8 +114,8 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
     const mesh = new Mesh(gl, { geometry, program });
 
     function resize() {
-      // Reduce resolution for better performance
-      const scale = 0.75;
+      // Balanced resolution for performance and quality
+      const scale = window.devicePixelRatio > 1 ? 0.8 : 1;
       renderer.setSize(
         container.offsetWidth * scale,
         container.offsetHeight * scale
