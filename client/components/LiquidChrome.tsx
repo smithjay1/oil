@@ -167,10 +167,15 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
     let animationId;
     function update(t) {
       animationId = requestAnimationFrame(update);
-      program.uniforms.uTime.value = t * 0.001 * speed;
-      renderer.render({ scene: mesh });
+      if (program?.uniforms?.uTime && mesh) {
+        program.uniforms.uTime.value = t * 0.001 * speed;
+        renderer.render({ scene: mesh });
+      }
     }
-    animationId = requestAnimationFrame(update);
+
+    if (mesh && program) {
+      animationId = requestAnimationFrame(update);
+    }
 
     container.appendChild(gl.canvas);
 
