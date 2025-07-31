@@ -775,8 +775,16 @@ export default function About() {
             </h2>
             <div className="flex justify-center">
               <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
+                <motion.div
+                  className="p-6 rounded-lg text-center cursor-pointer transition-all hover:scale-105 bg-gold text-dark-bg"
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="text-lg font-semibold mb-2">Company Brochure</div>
+                  <div className="text-sm">
+                    <a href="https://rvjc.co.uk/reports/1.pdf" download>Download Brochure</a>
+                  </div>
+                </motion.div>
                 {[
-                  { title: "Company Brochure", bg: "bg-gold text-dark-bg" },
                   {
                     title: "Financial Information",
                     bg: "bg-dark-bg border border-gold text-gold",
